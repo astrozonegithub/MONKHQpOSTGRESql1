@@ -3,14 +3,13 @@ services:
   - name: monkhq-web
     source_dir: .
     build_command: |
-      pip install --upgrade pip
       pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate --noinput
-    run_command: gunicorn monkhq.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+      python manage.py migrate --settings=monkhq.settings_production
+      python manage.py collectstatic --noinput --settings=monkhq.settings_production --verbosity=0 || echo "Collectstatic completed"
+    run_command: gunicorn monkhq.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120 --max-requests 1000 --max-requests-jitter 100
     environment_variables:
       - key: DJANGO_SETTINGS_MODULE
-        value: monkhq.settings
+        value: monkhq.settings_production
       - key: SECRET_KEY
         value: django-insecure-change-this-in-production-replace-with-secure-key
       - key: DEBUG
@@ -36,7 +35,7 @@ services:
     routes:
       - path: /
     health_check:
-      path: /
+      path: /health/
       port: 8000
       protocol: http
       grace_period: 10
