@@ -5,7 +5,8 @@ services:
     build_command: |
       pip install -r requirements.txt
       python manage.py migrate --settings=monkhq.settings_production
-      python manage.py collectstatic --noinput --settings=monkhq.settings_production --verbosity=0 || echo "Collectstatic completed"
+      mkdir -p staticfiles || true
+      python manage.py collectstatic --noinput --settings=monkhq.settings_production --verbosity=0 --clear || echo "Collectstatic completed with warnings"
     run_command: gunicorn monkhq.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120 --max-requests 1000 --max-requests-jitter 100
     environment_variables:
       - key: DJANGO_SETTINGS_MODULE
