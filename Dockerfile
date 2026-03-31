@@ -14,6 +14,13 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         gcc \
         libpq-dev \
+        libjpeg-dev \
+        zlib1g-dev \
+        libfreetype6-dev \
+        libwebp-dev \
+        libtiff5-dev \
+        liblcms2-dev \
+        libopenjp2-7-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
@@ -27,14 +34,8 @@ COPY . .
 # Create necessary directories
 RUN mkdir -p staticfiles media logs
 
-# Collect static files
-RUN python manage.py collectstatic --noinput || true
-
-# Run migrations (optional - can be done in build command)
-# RUN python manage.py migrate --noinput || true
-
 # Expose port
 EXPOSE 8000
 
-# Use gunicorn to run the application
-CMD gunicorn monkhq.wsgi:application --bind 0.0.0.0:8000 --workers 2 --timeout 120
+# Use start.sh entrypoint to run migrations, collectstatic, and start gunicorn
+ENTRYPOINT ["/app/start.sh"]
