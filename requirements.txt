@@ -12,7 +12,7 @@ whitenoise==6.6.0
 # Forms and UI
 django-crispy-forms==2.1
 crispy-bootstrap5==0.7
-Pillow==10.1.0
+Pillow==10.0.1
 
 # API and CORS
 djangorestframework==3.14.0
@@ -21,11 +21,14 @@ django-cors-headers==4.3.1
 # Cache and sessions
 redis==5.0.1
 
-# Development tools (optional for production)
-django-extensions==3.2.3
-
 # Email
 django-environ==0.11.2
 
-# Monitoring (optional)
+# Monitoring
 sentry-sdk==1.38.0
+
+# Development tools (commented out for production)
+# django-extensions==3.2.3
+
+# Additional production dependencies
+django-redis==5.4.0
