@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MonkHQ provides cutting-edge AI agent development services including custom AI chatbots, automation tools, intelligent workflow solutions, and machine learning integration. Transform your business with our advanced AI technology.">
+<meta name="keywords" content="AI agents, artificial intelligence, AI chatbots, automation, machine learning, workflow automation, intelligent systems, AI development, custom AI solutions, MonkHQ">
+<meta name="author" content="MonkHQ Digital Agency">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="AI Agent Development - MonkHQ">
+<meta property="og:description" content="MonkHQ provides cutting-edge AI agent development services including custom AI chatbots, automation tools, and intelligent workflow solutions.">
+<meta property="og:image" content="https://monkhq.com/static/images/ai-agent-og.jpg">
+<meta property="og:url" content="https://monkhq.com/ai-agent/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MonkHQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent Development - MonkHQ">
+<meta name="twitter:description" content="MonkHQ provides cutting-edge AI agent development services. Transform your business with our advanced AI technology.">
+<meta name="twitter:image" content="https://monkhq.com/static/images/ai-agent-og.jpg">
+<link rel="canonical" href="https://monkhq.com/ai-agent/">
+<title>AI Agent — MonkHQ Digital Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #000508;
+  --deep: #010c12;
+  --panel: #030f18;
+  --glass: rgba(0,240,255,0.03);
+  --c1: #00f0ff;
+  --c2: #00ff88;
+  --c3: #7b2fff;
+  --white: #f0faff;
+  --dim: rgba(240,250,255,0.5);
+  --faint: rgba(240,250,255,0.15);
+  --border: rgba(0,240,255,0.1);
+  --border2: rgba(0,240,255,0.28);
+  --orb: 'Orbitron', monospace;
+  --grotesk: 'Space Grotesk', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--white);font-family:var(--grotesk);overflow-x:hidden;cursor:none}
+/* cursor */
+#cur{width:10px;height:10px;border:1.5px solid var(--c1);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:screen}
+#cur-t{width:32px;height:32px;border:1px solid rgba(0,240,255,.18);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .2s ease,width .3s,height .3s;mix-blend-mode:screen}
+@media(max-width:768px){#cur,#cur-t{display:none}}
+/* noise */
+body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");background-size:160px;opacity:.35;pointer-events:none}
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.page{position:relative;z-index:2}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;background:rgba(0,5,8,.72);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background .3s}
+.logo{font-family:var(--orb);font-size:.95rem;font-weight:700;letter-spacing:.12em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo-dot{width:8px;height:8px;background:var(--c1);border-radius:50%;box-shadow:0 0 12px var(--c1);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.nav-mid{display:flex;gap:1.5rem}
+.nav-mid a{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
+.nav-mid a:hover{color:var(--c1)}
+@media(max-width:640px){.nav-mid{display:none}}
+.nav-btn{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.48rem 1.1rem;border:1px solid var(--c1);color:var(--c1);background:transparent;border-radius:3px;text-decoration:none;position:relative;overflow:hidden;transition:color .25s}
+.nav-btn::before{content:'';position:absolute;inset:0;background:var(--c1);transform:translateX(-100%);transition:transform .25s}
+.nav-btn:hover::before{transform:translateX(0)}
+.nav-btn:hover{color:var(--void)}
+.nav-btn span{position:relative;z-index:1}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+@media(min-width:900px){.hero{display:grid;grid-template-columns:1fr 1fr;min-height:100svh}}
+
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:7rem 2rem 3rem;position:relative}
+@media(min-width:900px){.hero-l{padding:7rem 3rem 4rem 4.5rem}}
+@media(min-width:1200px){.hero-l{padding:7rem 4rem 4rem 6rem}}
+
+.hero-r{display:flex;align-items:center;justify-content:center;min-height:380px;position:relative;overflow:hidden}
+@media(min-width:900px){.hero-r{border-left:1px solid var(--border);min-height:100svh}}
+
+/* hero-r grid BG */
+.hero-r::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(0,240,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.04) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black,transparent);pointer-events:none}
+.hero-r::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,240,255,.025),rgba(123,47,255,.015));pointer-events:none}
+
+/* badge */
+.badge{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c2);border:1px solid rgba(0,255,136,.22);background:rgba(0,255,136,.04);padding:.28rem .75rem;border-radius:100px;margin-bottom:1.4rem;width:fit-content;animation:fuv .6s ease both}
+.badge-d{width:5px;height:5px;background:var(--c2);border-radius:50%;box-shadow:0 0 8px var(--c2);animation:blink 1.4s infinite}
+
+.hero-eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c1);margin-bottom:.9rem;animation:fuv .6s .1s ease both;opacity:0;min-height:1.2em}
+
+.hero-h{font-family:var(--orb);font-size:clamp(1.9rem,7.5vw,4.2rem);font-weight:900;line-height:1.06;letter-spacing:-.01em;margin-bottom:1.4rem;animation:fuv .7s .15s ease both;opacity:0}
+.hero-h .line{display:block}
+.hero-h .grad{background:linear-gradient(90deg,var(--c1),var(--c2) 55%,var(--c3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gshift 5s ease-in-out infinite alternate}
+@keyframes gshift{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(25deg)}}
+
+.hero-p{font-size:.97rem;line-height:1.78;color:var(--dim);max-width:440px;margin-bottom:2rem;animation:fuv .7s .25s ease both;opacity:0}
+
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2.5rem;animation:fuv .7s .35s ease both;opacity:0}
+.btn-p{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.82rem 1.9rem;border-radius:4px;background:linear-gradient(135deg,var(--c1),var(--c2));color:var(--void);font-weight:600;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 0 28px rgba(0,240,255,.22)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(0,240,255,.4)}
+.btn-o{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.82rem 1.9rem;border-radius:4px;background:transparent;color:var(--white);border:1px solid var(--border2);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.btn-o:hover{border-color:var(--c1);color:var(--c1);background:rgba(0,240,255,.04)}
+
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;animation:fuv .7s .45s ease both;opacity:0}
+@media(min-width:480px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
+.stat{padding:.75rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--glass);position:relative;overflow:hidden;backdrop-filter:blur(6px)}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c1),transparent);opacity:.35}
+.sv{font-family:var(--orb);font-size:1.45rem;font-weight:900;color:var(--c1);line-height:1;text-shadow:0 0 18px rgba(0,240,255,.35)}
+.sl{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:.2rem}
+
+@keyframes fuv{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ROBOT */
+.robot-platform{position:relative;z-index:10;filter:drop-shadow(0 0 44px rgba(0,240,255,.28)) drop-shadow(0 0 90px rgba(0,240,255,.09))}
+.robot-bg-group{animation:rbob 3.2s ease-in-out infinite}
+@keyframes rbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* head */
+#rh{animation:hnod 1.9s ease-in-out infinite;transform-origin:150px 130px}
+@keyframes hnod{0%,100%{transform:rotate(-1.8deg)}50%{transform:rotate(1.8deg)}}
+/* arms */
+#ral{animation:asl .72s ease-in-out infinite alternate;transform-origin:108px 205px}
+@keyframes asl{from{transform:rotate(-26deg)}to{transform:rotate(16deg)}}
+#rar{animation:asr .72s ease-in-out infinite alternate;transform-origin:192px 205px}
+@keyframes asr{from{transform:rotate(16deg)}to{transform:rotate(-26deg)}}
+/* legs */
+#rll{animation:lgl .72s ease-in-out infinite alternate;transform-origin:133px 298px}
+@keyframes lgl{from{transform:rotate(-17deg)}to{transform:rotate(12deg)}}
+#rlr{animation:lgr .72s ease-in-out infinite alternate;transform-origin:167px 298px}
+@keyframes lgr{from{transform:rotate(12deg)}to{transform:rotate(-17deg)}}
+/* feet */
+#rfl{animation:ftl .72s ease-in-out infinite alternate;transform-origin:124px 337px}
+@keyframes ftl{from{transform:rotate(8deg)}to{transform:rotate(-4deg)}}
+#rfr{animation:ftr .72s ease-in-out infinite alternate;transform-origin:176px 337px}
+@keyframes ftr{from{transform:rotate(-4deg)}to{transform:rotate(8deg)}}
+/* eyes */
+.reye{animation:reblink 5s ease-in-out infinite;transform-origin:center}
+@keyframes reblink{0%,88%,100%{transform:scaleY(1)}93%{transform:scaleY(.07)}}
+.epulse{animation:epulse 2.1s ease-in-out infinite}
+@keyframes epulse{0%,100%{opacity:.8}50%{opacity:1}}
+/* antenna */
+#atip{animation:atip 1.1s ease-in-out infinite}
+@keyframes atip{0%,100%{opacity:.45;r:5}50%{opacity:1;r:7}}
+/* bars */
+.rbar{transform-origin:bottom}
+.rbar:nth-child(1){animation:rba 1s ease-in-out infinite alternate}
+.rbar:nth-child(2){animation:rba .85s .18s ease-in-out infinite alternate}
+.rbar:nth-child(3){animation:rba 1.2s .07s ease-in-out infinite alternate}
+.rbar:nth-child(4){animation:rba .75s .3s ease-in-out infinite alternate}
+.rbar:nth-child(5){animation:rba 1.1s .12s ease-in-out infinite alternate}
+@keyframes rba{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+/* screen scan */
+#rscan{animation:rscan 2.4s linear infinite}
+@keyframes rscan{0%{transform:translateY(-55px);opacity:0}8%{opacity:.55}92%{opacity:.55}100%{transform:translateY(68px);opacity:0}}
+/* joints */
+#jl{animation:jspin 2.8s linear infinite;transform-origin:108px 205px}
+#jr{animation:jspin 2.8s linear infinite reverse;transform-origin:192px 205px}
+@keyframes jspin{to{transform:rotate(360deg)}}
+/* circuit dots */
+.cdot{animation:cdot 3.2s ease-in-out infinite}
+.cdot:nth-child(even){animation-delay:1.6s}
+@keyframes cdot{0%,100%{opacity:.25}50%{opacity:1}}
+/* ground */
+.rground{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);width:210px;height:14px;background:radial-gradient(ellipse,rgba(0,240,255,.42),transparent 70%);filter:blur(8px);border-radius:50%;animation:gpulse 3s ease-in-out infinite}
+@keyframes gpulse{0%,100%{opacity:.5;transform:translateX(-50%) scaleX(1)}50%{opacity:1;transform:translateX(-50%) scaleX(1.3)}}
+/* orbits */
+.orb-ring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;animation:ospin linear infinite;pointer-events:none}
+.orb-ring:nth-child(1){width:310px;height:310px;margin:-155px 0 0 -155px;border-color:rgba(0,240,255,.07);animation-duration:15s}
+.orb-ring:nth-child(2){width:420px;height:420px;margin:-210px 0 0 -210px;border-color:rgba(0,255,136,.05);animation-duration:24s;animation-direction:reverse}
+.orb-ring:nth-child(3){width:220px;height:220px;margin:-110px 0 0 -110px;border-color:rgba(123,47,255,.07);animation-duration:10s}
+@keyframes ospin{to{transform:rotate(360deg)}}
+.orb-dot{position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%}
+.orb-ring:nth-child(1) .orb-dot{background:var(--c1);box-shadow:0 0 10px var(--c1)}
+.orb-ring:nth-child(2) .orb-dot{background:var(--c2);box-shadow:0 0 10px var(--c2)}
+.orb-ring:nth-child(3) .orb-dot{background:var(--c3);box-shadow:0 0 10px var(--c3)}
+/* chips */
+.chip{position:absolute;font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--c1);border:1px solid rgba(0,240,255,.2);background:rgba(0,240,255,.04);padding:.18rem .5rem;border-radius:3px;white-space:nowrap;pointer-events:none;opacity:0;animation:chip linear infinite}
+.chip:nth-child(5){top:14%;left:-25px;animation-duration:5s;animation-delay:0s}
+.chip:nth-child(6){top:32%;right:-8px;animation-duration:6.5s;animation-delay:1.2s;color:var(--c2);border-color:rgba(0,255,136,.2)}
+.chip:nth-child(7){top:54%;left:-18px;animation-duration:4.5s;animation-delay:2.8s}
+.chip:nth-child(8){bottom:28%;right:-5px;animation-duration:5.5s;animation-delay:.6s;color:var(--c2);border-color:rgba(0,255,136,.2)}
+.chip:nth-child(9){bottom:12%;left:8px;animation-duration:4s;animation-delay:1.9s;color:var(--c3);border-color:rgba(123,47,255,.3)}
+@keyframes chip{0%{opacity:0;transform:translateY(8px)}12%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+
+/* SECTIONS */
+section{padding:5rem 1.5rem}
+.container{max-width:1100px;margin:0 auto}
+.stag{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c1);display:flex;align-items:center;gap:.55rem;margin-bottom:.7rem}
+.stag::before{content:'';width:18px;height:1px;background:var(--c1)}
+.stitle{font-family:var(--orb);font-size:clamp(1.55rem,5vw,2.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.1;margin-bottom:.7rem}
+.ssub{color:var(--dim);font-size:.93rem;max-width:480px;line-height:1.75;margin-bottom:3rem}
+.hr{height:1px;background:linear-gradient(90deg,transparent,var(--c1) 35%,var(--c2) 65%,transparent);opacity:.14;margin:0}
+
+/* SERVICES */
+.sbg{background:var(--deep)}
+.sgrid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+@media(min-width:560px){.sgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:880px){.sgrid{grid-template-columns:repeat(3,1fr)}}
+.scard{background:var(--panel);padding:1.8rem 1.5rem;position:relative;overflow:hidden;transition:background .3s}
+.scard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.scard:hover::after{transform:scaleX(1)}
+.scard:hover{background:rgba(0,240,255,.025)}
+.snum{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--c1);text-transform:uppercase;margin-bottom:.9rem}
+.sicon{width:46px;height:46px;border:1px solid var(--border);border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.1rem;transition:border-color .3s,box-shadow .3s}
+.scard:hover .sicon{border-color:var(--c1);box-shadow:0 0 18px rgba(0,240,255,.14)}
+.sname{font-family:var(--grotesk);font-size:.97rem;font-weight:600;margin-bottom:.55rem}
+.sdesc{font-size:.82rem;color:var(--dim);line-height:1.7}
+
+/* TECH */
+.tgrid{display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media(min-width:560px){.tgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.tgrid{grid-template-columns:repeat(4,1fr)}}
+.tlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c1);padding-bottom:.55rem;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{font-family:var(--mono);font-size:.66rem;padding:.28rem .72rem;border:1px solid var(--border);border-radius:100px;color:var(--dim);background:var(--glass);transition:border-color .2s,color .2s,background .2s;cursor:default}
+.pill:hover{border-color:var(--c1);color:var(--c1);background:rgba(0,240,255,.05)}
+
+/* USE CASES */
+.ubg{background:var(--deep)}
+.ugrid{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:560px){.ugrid{grid-template-columns:1fr 1fr}}
+@media(min-width:880px){.ugrid{grid-template-columns:repeat(3,1fr)}}
+.ucard{border:1px solid var(--border);border-radius:10px;padding:1.4rem;background:var(--panel);transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.ucard::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(0,240,255,.04),transparent 60%);opacity:0;transition:opacity .3s}
+.ucard:hover{transform:translateY(-4px);border-color:var(--c1);box-shadow:0 8px 32px rgba(0,240,255,.07)}
+.ucard:hover::before{opacity:1}
+.utop{display:flex;align-items:center;gap:.7rem;margin-bottom:.85rem}
+.uico{width:38px;height:38px;background:var(--glass);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.uname{font-family:var(--grotesk);font-size:.93rem;font-weight:600}
+.udesc{font-size:.8rem;color:var(--dim);line-height:1.65;margin-bottom:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;padding:.18rem .48rem;border-radius:3px;background:rgba(0,240,255,.07);color:var(--c1)}
+
+/* PROCESS */
+.plist{display:flex;flex-direction:column}
+.pitem{display:grid;grid-template-columns:58px 1fr;gap:1.4rem;padding:1.8rem 0;border-bottom:1px solid var(--border);position:relative}
+.pitem:last-child{border-bottom:none}
+.pitem::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(var(--c1),transparent);opacity:0;transition:opacity .3s}
+.pitem:hover::before{opacity:.3}
+.pnum{font-family:var(--orb);font-size:1.9rem;font-weight:900;color:var(--border);line-height:1;transition:color .3s,text-shadow .3s}
+.pitem:hover .pnum{color:var(--c1);text-shadow:0 0 22px rgba(0,240,255,.4)}
+.pname{font-family:var(--grotesk);font-size:.97rem;font-weight:600;margin-bottom:.38rem}
+.pdesc{font-size:.82rem;color:var(--dim);line-height:1.7}
+
+/* BENEFITS */
+.bbg{background:var(--deep)}
+.bgrid{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:560px){.bgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:880px){.bgrid{grid-template-columns:repeat(3,1fr)}}
+.bcard{padding:1.4rem;border:1px solid var(--border);border-radius:10px;background:var(--panel);display:flex;flex-direction:column;gap:.45rem;transition:border-color .25s,transform .25s}
+.bcard:hover{border-color:rgba(0,255,136,.3);transform:translateY(-3px)}
+.bico{font-size:1.45rem;margin-bottom:.2rem}
+.bname{font-family:var(--grotesk);font-size:.93rem;font-weight:600}
+.bdesc{font-size:.8rem;color:var(--dim);line-height:1.65}
+
+/* CTA */
+.cta{text-align:center;padding:6rem 1.5rem;position:relative;overflow:hidden;background:var(--void)}
+.cta-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,240,255,.065),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:cglow 4.5s ease-in-out infinite}
+@keyframes cglow{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+.cta-lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem;position:relative}
+.cta-h{font-family:var(--orb);font-size:clamp(1.75rem,7vw,3.5rem);font-weight:900;letter-spacing:-.01em;line-height:1.08;margin-bottom:1rem;position:relative}
+.cta-p{color:var(--dim);font-size:.93rem;max-width:390px;margin:0 auto 2.5rem;line-height:1.75;position:relative}
+.cta-btns{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;position:relative}
+
+/* FOOTER */
+footer{padding:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+footer p{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.07em}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd{transition-delay:.14s}
+
+/* ─── CONTACT FORM STYLES ─── */
+.contact-form-section {
+  padding: clamp(80px, 12vw, 160px) 0;
+  background: var(--surface, #121212);
+}
+
+.contact-form-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .contact-form-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.contact-form-header {
+  margin-bottom: 2rem;
+}
+
+.contact-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.contact-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--c1);
+}
+
+.contact-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.contact-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c1);
+}
+
+.contact-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c1);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 1rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--c1);
+  box-shadow: 0 0 0 2px rgba(0,240,255,0.1);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.submit-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--c1);
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.submit-btn:hover {
+  background: var(--c2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,240,255,0.2);
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.alert-success {
+  background: rgba(0,255,136,0.1);
+  border: 1px solid var(--c2);
+  color: var(--white);
+}
+
+.alert-error {
+  background: rgba(255,0,0,0.1);
+  border: 1px solid #ff0000;
+  color: #ff6b6b;
+}
+
+/* scrollbar */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--c1);border-radius:10px;opacity:.4}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-t"></div>
+<canvas id="bg-canvas"></canvas>
+
+<div class="page">
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="logo"><span class="logo-dot"></span>MONK<span style="color:var(--c1)">HQ</span></a>
+  <div class="nav-mid">
+    <a href="/website-development/">Website Development</a>
+    <a href="/influencer-marketing/">Influencer Marketing</a>
+    <a href="/ai-agent/" class="active">AI Agent</a>
+    <a href="/software-store/">Software Store</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <a href="/contact/" class="nav-btn"><span>Start Project →</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- LEFT -->
+  <div class="hero-l">
+    <div class="badge"><span class="badge-d"></span>Systems Online · Agents Active</div>
+    <div class="hero-eyebrow" id="eyebrow">// AI Agent Development</div>
+    <h1 class="hero-h">
+      <span class="line">Build Agents</span>
+      <span class="line">That Think,</span>
+      <span class="line grad">Act &amp; Scale.</span>
+    </h1>
+    <p class="hero-p">We engineer intelligent AI systems that automate workflows, understand language, and operate 24/7 — built for the real world, deployed fast.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-p">Build Your Agent</a>
+      <a href="#services" class="btn-o">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="sv">80%</div><div class="sl">Cost Cut</div></div>
+      <div class="stat"><div class="sv">24/7</div><div class="sl">Autonomous</div></div>
+      <div class="stat"><div class="sv">10×</div><div class="sl">Faster</div></div>
+      <div class="stat"><div class="sv">∞</div><div class="sl">Scalable</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: ROBOT -->
+  <div class="hero-r">
+    <div class="orb-ring"><div class="orb-dot"></div></div>
+    <div class="orb-ring"><div class="orb-dot"></div></div>
+    <div class="orb-ring"><div class="orb-dot"></div></div>
+    <div class="rground"></div>
+    <!-- chips are children 5-9 -->
+    <div class="chip">AGENT_001 · ONLINE</div>
+    <div class="chip">TASK_COMPLETE ✓</div>
+    <div class="chip">NEURAL_NET · ACTIVE</div>
+    <div class="chip">SCALE_∞ · READY</div>
+    <div class="chip">LLM_CORE · RUNNING</div>
+
+    <div class="robot-platform">
+      <svg width="290" height="370" viewBox="58 78 184 308" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="gw"><feGaussianBlur stdDeviation="2.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="gw2"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <linearGradient id="bG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b2240"/><stop offset="100%" stop-color="#040f22"/></linearGradient>
+          <linearGradient id="hG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0e2a4a"/><stop offset="100%" stop-color="#061626"/></linearGradient>
+          <radialGradient id="eG" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#0055aa" stop-opacity=".3"/></radialGradient>
+          <clipPath id="sc"><rect x="118" y="200" width="64" height="52" rx="4"/></clipPath>
+        </defs>
+        <g class="robot-bg-group">
+          <!-- LEGS -->
+          <g id="rll"><rect x="120" y="290" width="21" height="50" rx="7" fill="url(#bG)" stroke="rgba(0,240,255,.22)" stroke-width="1.2"/><rect x="122" y="290" width="4" height="50" rx="2" fill="rgba(0,240,255,.07)"/></g>
+          <g id="rlr"><rect x="159" y="290" width="21" height="50" rx="7" fill="url(#bG)" stroke="rgba(0,240,255,.22)" stroke-width="1.2"/><rect x="174" y="290" width="4" height="50" rx="2" fill="rgba(0,240,255,.07)"/></g>
+          <!-- FEET -->
+          <g id="rfl"><rect x="114" y="334" width="30" height="14" rx="6" fill="#030f20" stroke="rgba(0,240,255,.32)" stroke-width="1"/><rect x="117" y="344" width="25" height="4" rx="2" fill="rgba(0,240,255,.14)"/></g>
+          <g id="rfr"><rect x="156" y="334" width="30" height="14" rx="6" fill="#030f20" stroke="rgba(0,240,255,.32)" stroke-width="1"/><rect x="159" y="344" width="25" height="4" rx="2" fill="rgba(0,240,255,.14)"/></g>
+          <!-- HIP -->
+          <rect x="128" y="283" width="44" height="10" rx="5" fill="#040f20" stroke="rgba(0,240,255,.18)" stroke-width="1"/>
+          <rect x="138" y="285" width="24" height="6" rx="3" fill="rgba(0,240,255,.1)"/>
+          <!-- ARMS -->
+          <g id="ral">
+            <rect x="80" y="202" width="23" height="60" rx="9" fill="url(#bG)" stroke="rgba(0,240,255,.22)" stroke-width="1.2"/>
+            <rect x="82" y="204" width="4" height="56" rx="2" fill="rgba(0,240,255,.06)"/>
+            <rect x="78" y="257" width="27" height="19" rx="7" fill="#040f20" stroke="rgba(0,240,255,.32)" stroke-width="1"/>
+            <rect x="81" y="261" width="5" height="11" rx="2.5" fill="rgba(0,240,255,.25)"/>
+            <rect x="88" y="259" width="5" height="13" rx="2.5" fill="rgba(0,240,255,.25)"/>
+            <rect x="95" y="260" width="5" height="12" rx="2.5" fill="rgba(0,240,255,.25)"/>
+          </g>
+          <g id="rar">
+            <rect x="197" y="202" width="23" height="60" rx="9" fill="url(#bG)" stroke="rgba(0,240,255,.22)" stroke-width="1.2"/>
+            <rect x="214" y="204" width="4" height="56" rx="2" fill="rgba(0,240,255,.06)"/>
+            <rect x="195" y="257" width="27" height="19" rx="7" fill="#040f20" stroke="rgba(0,240,255,.32)" stroke-width="1"/>
+            <rect x="198" y="261" width="5" height="11" rx="2.5" fill="rgba(0,240,255,.25)"/>
+            <rect x="205" y="259" width="5" height="13" rx="2.5" fill="rgba(0,240,255,.25)"/>
+            <rect x="212" y="260" width="5" height="12" rx="2.5" fill="rgba(0,240,255,.25)"/>
+          </g>
+          <!-- SHOULDER JOINTS -->
+          <g id="jl" filter="url(#gw)">
+            <circle cx="108" cy="205" r="9" fill="#030d1a" stroke="rgba(0,240,255,.5)" stroke-width="1.5"/>
+            <circle cx="108" cy="205" r="3.5" fill="rgba(0,240,255,.85)"/>
+            <line x1="108" y1="199" x2="108" y2="197" stroke="rgba(0,240,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="114" y1="205" x2="116" y2="205" stroke="rgba(0,240,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <g id="jr" filter="url(#gw)">
+            <circle cx="192" cy="205" r="9" fill="#030d1a" stroke="rgba(0,240,255,.5)" stroke-width="1.5"/>
+            <circle cx="192" cy="205" r="3.5" fill="rgba(0,240,255,.85)"/>
+            <line x1="192" y1="199" x2="192" y2="197" stroke="rgba(0,240,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="186" y1="205" x2="184" y2="205" stroke="rgba(0,240,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <!-- BODY -->
+          <rect x="108" y="195" width="84" height="90" rx="12" fill="url(#bG)" stroke="rgba(0,240,255,.28)" stroke-width="1.5"/>
+          <rect x="108" y="195" width="3" height="90" rx="1.5" fill="rgba(0,240,255,.16)"/>
+          <rect x="189" y="195" width="3" height="90" rx="1.5" fill="rgba(0,240,255,.1)"/>
+          <!-- SCREEN -->
+          <rect x="118" y="200" width="64" height="52" rx="4" fill="#010812" stroke="rgba(0,240,255,.38)" stroke-width="1"/>
+          <line x1="118" y1="218" x2="182" y2="218" stroke="rgba(0,240,255,.07)" stroke-width=".5"/>
+          <line x1="118" y1="234" x2="182" y2="234" stroke="rgba(0,240,255,.07)" stroke-width=".5"/>
+          <line x1="118" y1="250" x2="182" y2="250" stroke="rgba(0,240,255,.07)" stroke-width=".5"/>
+          <line x1="140" y1="200" x2="140" y2="252" stroke="rgba(0,240,255,.07)" stroke-width=".5"/>
+          <line x1="161" y1="200" x2="161" y2="252" stroke="rgba(0,240,255,.07)" stroke-width=".5"/>
+          <g clip-path="url(#sc)">
+            <rect class="rbar" x="122" y="218" width="9" height="34" rx="2" fill="rgba(0,240,255,.7)"/>
+            <rect class="rbar" x="134" y="213" width="9" height="39" rx="2" fill="rgba(0,255,136,.7)"/>
+            <rect class="rbar" x="146" y="221" width="9" height="31" rx="2" fill="rgba(0,240,255,.55)"/>
+            <rect class="rbar" x="158" y="215" width="9" height="37" rx="2" fill="rgba(123,47,255,.7)"/>
+            <rect class="rbar" x="170" y="224" width="9" height="28" rx="2" fill="rgba(0,255,136,.55)"/>
+          </g>
+          <rect id="rscan" x="118" y="200" width="64" height="5" rx="1" fill="rgba(0,240,255,.18)" clip-path="url(#sc)"/>
+          <!-- STATUS -->
+          <circle class="cdot" cx="121" cy="270" r="3.5" fill="rgba(0,255,136,.9)" filter="url(#gw)"/>
+          <circle class="cdot" cx="132" cy="270" r="3.5" fill="rgba(0,240,255,.9)" filter="url(#gw)"/>
+          <circle class="cdot" cx="143" cy="270" r="3" fill="rgba(0,240,255,.38)"/>
+          <line x1="157" y1="263" x2="185" y2="263" stroke="rgba(0,240,255,.18)" stroke-width="1"/>
+          <line x1="157" y1="269" x2="185" y2="269" stroke="rgba(0,240,255,.18)" stroke-width="1"/>
+          <line x1="157" y1="275" x2="185" y2="275" stroke="rgba(0,240,255,.18)" stroke-width="1"/>
+          <!-- circuit traces -->
+          <polyline points="108,218 100,218 100,232" stroke="rgba(0,240,255,.13)" stroke-width=".7" fill="none"/>
+          <circle class="cdot" cx="100" cy="232" r="1.8" fill="rgba(0,240,255,.5)"/>
+          <polyline points="192,230 200,230 200,218" stroke="rgba(0,240,255,.13)" stroke-width=".7" fill="none"/>
+          <circle class="cdot" cx="200" cy="218" r="1.8" fill="rgba(0,240,255,.5)"/>
+          <!-- NECK -->
+          <rect x="141" y="183" width="18" height="14" rx="4" fill="#030d1a" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+          <rect x="144" y="185" width="12" height="10" rx="2.5" fill="rgba(0,240,255,.05)"/>
+          <!-- HEAD -->
+          <g id="rh">
+            <rect x="110" y="115" width="80" height="70" rx="16" fill="url(#hG)" stroke="rgba(0,240,255,.32)" stroke-width="1.5"/>
+            <rect x="110" y="115" width="3" height="70" rx="1.5" fill="rgba(0,240,255,.2)"/>
+            <rect x="187" y="115" width="3" height="70" rx="1.5" fill="rgba(0,240,255,.1)"/>
+            <!-- EYES -->
+            <g class="reye">
+              <rect x="121" y="131" width="23" height="23" rx="7" fill="url(#eG)" filter="url(#gw2)"/>
+              <rect x="125" y="135" width="15" height="15" rx="4.5" fill="rgba(0,20,42,.85)"/>
+              <circle class="epulse" cx="132" cy="142" r="5" fill="rgba(0,240,255,.95)" filter="url(#gw)"/>
+              <circle cx="135" cy="139" r="2" fill="white" opacity=".9"/>
+            </g>
+            <g class="reye">
+              <rect x="156" y="131" width="23" height="23" rx="7" fill="url(#eG)" filter="url(#gw2)"/>
+              <rect x="160" y="135" width="15" height="15" rx="4.5" fill="rgba(0,20,42,.85)"/>
+              <circle class="epulse" cx="168" cy="142" r="5" fill="rgba(0,240,255,.95)" filter="url(#gw)"/>
+              <circle cx="171" cy="139" r="2" fill="white" opacity=".9"/>
+            </g>
+            <!-- MOUTH -->
+            <rect x="126" y="164" width="48" height="12" rx="5" fill="#010c1e" stroke="rgba(0,240,255,.22)" stroke-width="1"/>
+            <line x1="132" y1="164" x2="132" y2="176" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+            <line x1="140" y1="164" x2="140" y2="176" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+            <line x1="148" y1="164" x2="148" y2="176" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+            <line x1="156" y1="164" x2="156" y2="176" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+            <line x1="164" y1="164" x2="164" y2="176" stroke="rgba(0,240,255,.2)" stroke-width="1"/>
+            <!-- accents -->
+            <line x1="110" y1="150" x2="118" y2="150" stroke="rgba(0,240,255,.22)" stroke-width="1" stroke-linecap="round"/>
+            <line x1="182" y1="150" x2="190" y2="150" stroke="rgba(0,240,255,.22)" stroke-width="1" stroke-linecap="round"/>
+            <rect x="147" y="116" width="6" height="6" rx="2" fill="rgba(0,240,255,.12)" stroke="rgba(0,240,255,.18)" stroke-width=".8"/>
+            <!-- ANTENNA -->
+            <line x1="150" y1="115" x2="150" y2="97" stroke="rgba(0,240,255,.38)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="150" y1="97" x2="140" y2="88" stroke="rgba(0,240,255,.28)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="150" y1="97" x2="160" y2="89" stroke="rgba(0,240,255,.18)" stroke-width="1" stroke-linecap="round"/>
+            <circle id="atip" cx="150" cy="97" r="5.5" fill="rgba(0,255,136,.9)" filter="url(#gw2)"/>
+            <circle cx="140" cy="88" r="3" fill="rgba(0,240,255,.7)" filter="url(#gw)"/>
+            <circle cx="160" cy="89" r="2.5" fill="rgba(123,47,255,.8)" filter="url(#gw)"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+</section>
+
+<div class="hr"></div>
+
+<!-- SERVICES -->
+<section class="sbg" id="services">
+  <div class="container">
+    <div class="reveal"><div class="stag">What We Build</div><h2 class="stitle">AI Agent Services</h2><p class="ssub">Intelligent solutions powered by cutting-edge language models, ML pipelines, and autonomous agent frameworks.</p></div>
+    <div class="sgrid reveal rd">
+      <div class="scard"><div class="snum">01 / AGENT</div><div class="sicon">🤖</div><div class="sname">Custom AI Agents</div><p class="sdesc">Tailored agents designed for specific business tasks — from research & reasoning to multi-step decision pipelines.</p></div>
+      <div class="scard"><div class="snum">02 / NLP</div><div class="sicon">💬</div><div class="sname">Chatbot Development</div><p class="sdesc">Conversational agents with memory, context awareness, and omnichannel deployment for 24/7 customer interaction.</p></div>
+      <div class="scard"><div class="snum">03 / AUTO</div><div class="sicon">⚙️</div><div class="sname">Process Automation</div><p class="sdesc">AI-driven automation that eliminates repetitive tasks and orchestrates complex multi-system workflows.</p></div>
+      <div class="scard"><div class="snum">04 / LANG</div><div class="sicon">🧠</div><div class="sname">Natural Language Processing</div><p class="sdesc">Advanced NLP for entity extraction, sentiment, classification, and document intelligence at scale.</p></div>
+      <div class="scard"><div class="snum">05 / DATA</div><div class="sicon">📈</div><div class="sname">Predictive Analytics</div><p class="sdesc">AI agents that surface patterns and deliver actionable forecasts for smarter business decisions.</p></div>
+      <div class="scard"><div class="snum">06 / SEC</div><div class="sicon">🛡️</div><div class="sname">AI Security Solutions</div><p class="sdesc">Real-time intelligent agents for threat detection, fraud prevention, and anomaly identification.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="container">
+    <div class="reveal"><div class="stag">Under the Hood</div><h2 class="stitle">Tech Stack</h2><p class="ssub">State-of-the-art frameworks powering every agent we ship.</p></div>
+    <div class="tgrid reveal rd">
+      <div><div class="tlabel">Machine Learning</div><div class="pills"><span class="pill">TensorFlow</span><span class="pill">PyTorch</span><span class="pill">Scikit-learn</span><span class="pill">Keras</span><span class="pill">XGBoost</span></div></div>
+      <div><div class="tlabel">Language & Agents</div><div class="pills"><span class="pill">OpenAI GPT</span><span class="pill">Claude</span><span class="pill">LangChain</span><span class="pill">BERT</span><span class="pill">spaCy</span></div></div>
+      <div><div class="tlabel">Computer Vision</div><div class="pills"><span class="pill">OpenCV</span><span class="pill">YOLO</span><span class="pill">ResNet</span><span class="pill">Mask R-CNN</span><span class="pill">Detectron2</span></div></div>
+      <div><div class="tlabel">Deployment</div><div class="pills"><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">AWS SageMaker</span><span class="pill">MLflow</span><span class="pill">Railway</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- USE CASES -->
+<section class="ubg" id="work">
+  <div class="container">
+    <div class="reveal"><div class="stag">Industries</div><h2 class="stitle">AI Agent Use Cases</h2><p class="ssub">Real-world AI applications across six high-impact sectors.</p></div>
+    <div class="ugrid reveal rd">
+      <div class="ucard"><div class="utop"><div class="uico">🛒</div><div class="uname">E-commerce</div></div><p class="udesc">Personalized shopping assistants, inventory intelligence, and automated customer service.</p><div class="tags"><span class="tag">Recommendations</span><span class="tag">Inventory</span><span class="tag">Support Bots</span></div></div>
+      <div class="ucard"><div class="utop"><div class="uico">🏥</div><div class="uname">Healthcare</div></div><p class="udesc">Diagnosis assistance, patient monitoring, and administrative workflow automation.</p><div class="tags"><span class="tag">Symptom AI</span><span class="tag">Scheduling</span><span class="tag">Records</span></div></div>
+      <div class="ucard"><div class="utop"><div class="uico">📊</div><div class="uname">Finance</div></div><p class="udesc">Fraud detection, risk assessment, and personalized financial advisory agents.</p><div class="tags"><span class="tag">Fraud Detection</span><span class="tag">Risk AI</span><span class="tag">Trading</span></div></div>
+      <div class="ucard"><div class="utop"><div class="uico">🎓</div><div class="uname">Education</div></div><p class="udesc">Adaptive learning paths, automated grading, and intelligent tutoring systems.</p><div class="tags"><span class="tag">Adaptive AI</span><span class="tag">Content Gen</span><span class="tag">Tracking</span></div></div>
+      <div class="ucard"><div class="utop"><div class="uico">🏭</div><div class="uname">Manufacturing</div></div><p class="udesc">Predictive maintenance, quality control, and supply chain optimization.</p><div class="tags"><span class="tag">Maintenance</span><span class="tag">Quality</span><span class="tag">Supply Chain</span></div></div>
+      <div class="ucard"><div class="utop"><div class="uico">🏙️</div><div class="uname">Real Estate</div></div><p class="udesc">Property valuation models, virtual tours, and automated lead-handling agents.</p><div class="tags"><span class="tag">Valuation</span><span class="tag">Lead Gen</span><span class="tag">Virtual Tours</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="reveal"><div class="stag">How We Work</div><h2 class="stitle">Development Process</h2><p class="ssub">Systematic, iterative — from business need to production deployment.</p></div>
+    <div class="plist reveal rd">
+      <div class="pitem"><div class="pnum">01</div><div><div class="pname">Discovery & Planning</div><p class="pdesc">Understanding your business needs and identifying AI opportunities that deliver maximum measurable value.</p></div></div>
+      <div class="pitem"><div class="pnum">02</div><div><div class="pname">Data Preparation</div><p class="pdesc">Collecting, cleaning, and preprocessing data pipelines to ensure high-quality inputs for model training.</p></div></div>
+      <div class="pitem"><div class="pnum">03</div><div><div class="pname">Model Development</div><p class="pdesc">Designing and training AI agents using LLMs, state-of-the-art algorithms, and agentic frameworks.</p></div></div>
+      <div class="pitem"><div class="pnum">04</div><div><div class="pname">Testing & Validation</div><p class="pdesc">Rigorous evaluation to ensure accuracy, reliability, and real-world performance of every agent.</p></div></div>
+      <div class="pitem"><div class="pnum">05</div><div><div class="pname">Deployment & Monitoring</div><p class="pdesc">Seamless production deployment with continuous monitoring, retraining, and performance optimization.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- BENEFITS -->
+<section class="bbg">
+  <div class="container">
+    <div class="reveal"><div class="stag">Why AI Agents</div><h2 class="stitle">Business Impact</h2><p class="ssub">Tangible, measurable transformations across your entire operation.</p></div>
+    <div class="bgrid reveal rd">
+      <div class="bcard"><div class="bico">⏱️</div><div class="bname">24/7 Availability</div><p class="bdesc">AI agents work continuously without breaks, ensuring uninterrupted service and zero downtime.</p></div>
+      <div class="bcard"><div class="bico">💰</div><div class="bname">80% Cost Reduction</div><p class="bdesc">Automate repetitive tasks and dramatically cut operational overhead with intelligent agents.</p></div>
+      <div class="bcard"><div class="bico">⚡</div><div class="bname">10× Efficiency</div><p class="bdesc">Process tasks faster and more accurately than manual workflows with AI-powered automation.</p></div>
+      <div class="bcard"><div class="bico">🎯</div><div class="bname">Better CX</div><p class="bdesc">Deliver instant, personalized responses that lift satisfaction scores and drive loyalty.</p></div>
+      <div class="bcard"><div class="bico">📐</div><div class="bname">Infinite Scale</div><p class="bdesc">Scale on demand — no additional hiring, training, or infrastructure delays.</p></div>
+      <div class="bcard"><div class="bico">🔬</div><div class="bname">Data-Driven Insights</div><p class="bdesc">Unlock intelligence from every interaction, surfacing patterns humans would never catch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta" id="contact">
+  <div class="cta-glow"></div>
+  <div class="container reveal">
+    <div class="cta-lbl">// Ready to Deploy?</div>
+    <h2 class="cta-h">Let's Build<br><span style="background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Something Intelligent.</span></h2>
+    <p class="cta-p">Tell us your challenge. We'll design the AI agent that solves it — fast.</p>
+    <div class="cta-btns">
+      <a href="/contact/" class="btn-p">Start Your AI Project</a>
+      <a href="#" class="btn-o">Back to Top ↑</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT FORM -->
+<section class="contact-form-section" id="contact">
+  <div class="contact-form-wrapper">
+    <!-- Left: Content -->
+    <div class="contact-form-header">
+      <div class="contact-eyebrow">
+        <span class="hero-tag-dot"></span>
+        Get In Touch
+      </div>
+      <h2 class="contact-title">
+        Ready to <span class="italic g2">Deploy</span><br>Your AI Agent?
+      </h2>
+      <p class="contact-desc">
+        Let's build an intelligent agent that automates your workflows — fast, secure, and built to scale.
+      </p>
+    </div>
+    
+    <!-- Right: Form -->
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <form method="POST" action="/contact/">
+        {% csrf_token %}
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name" class="form-label">Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email *</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" id="phone" name="phone" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" id="company" name="company" class="form-input">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="service_interest" class="form-label">Service Interest</label>
+          <select id="service_interest" name="service_interest" class="form-select">
+            <option value="">Select a service</option>
+            <option value="Website Development">Website Development</option>
+            <option value="Influencer Marketing">Influencer Marketing</option>
+            <option value="AI Agent">AI Agent</option>
+            <option value="Software Store">Software Store</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label">Message *</label>
+          <textarea id="message" name="message" class="form-textarea" required placeholder="Tell us about your AI project requirements, automation goals, and timeline..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Deploy Agent</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 MonkHQ Digital Agency · AI Agent Division</p>
+  <p style="color:var(--c1);opacity:.55;">SYSTEMS ONLINE · ALL AGENTS OPERATIONAL</p>
+</footer>
+
+</div>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'), curT=document.getElementById('cur-t');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animT(){tx+=(mx-tx)*.11;ty+=(my-ty)*.11;curT.style.left=tx+'px';curT.style.top=ty+'px';requestAnimationFrame(animT)})();
+document.querySelectorAll('a,button,.scard,.ucard,.bcard,.pill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.background='rgba(0,240,255,.18)';curT.style.width='48px';curT.style.height='48px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='transparent';curT.style.width='32px';curT.style.height='32px'});
+});
+
+// CANVAS
+const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
+let W,H,pts=[],raf2;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+function init(){
+  pts=[];
+  const n=Math.min(72,Math.floor(W*H/13000));
+  for(let i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,r:Math.random()*1.4+.5,p:Math.random()*Math.PI*2,g:Math.random()>.8});
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.p+=.018;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1});
+  const md=145;
+  for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+    const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<md){const a=(1-d/md)*.38;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=pts[i].g?`rgba(0,255,136,${a*.6})`:`rgba(0,240,255,${a})`;ctx.lineWidth=.45;ctx.stroke()}
+  }
+  pts.forEach(p=>{const pulse=.55+.45*Math.sin(p.p);ctx.beginPath();ctx.arc(p.x,p.y,p.r*pulse,0,Math.PI*2);ctx.fillStyle=p.g?`rgba(0,255,136,${.65*pulse})`:`rgba(0,240,255,${.6*pulse})`;ctx.fill()});
+  raf2=requestAnimationFrame(draw);
+}
+resize();init();draw();
+window.addEventListener('resize',()=>{cancelAnimationFrame(raf2);resize();init();draw()});
+
+// ROBOT EYES FOLLOW MOUSE
+document.addEventListener('mousemove',e=>{
+  const svg=document.querySelector('.robot-platform svg');
+  if(!svg) return;
+  const r=svg.getBoundingClientRect();
+  const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const dx=(e.clientX-cx)/window.innerWidth*3, dy=(e.clientY-cy)/window.innerHeight*2;
+  document.querySelectorAll('.epulse').forEach((el,i)=>{el.setAttribute('cx',i===0?132+dx:168+dx);el.setAttribute('cy',142+dy)});
+});
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// NAV scroll
+window.addEventListener('scroll',()=>{document.querySelector('.nav').style.background=window.scrollY>50?'rgba(0,5,8,.94)':'rgba(0,5,8,.72)'});
+
+// TYPING EFFECT
+const ey=document.getElementById('eyebrow');
+const txt=ey.textContent; ey.textContent=''; let ii=0;
+setTimeout(()=>{const t=setInterval(()=>{ey.textContent+=txt[ii++];if(ii>=txt.length)clearInterval(t)},52)},500);
+</script>
+</body>
+</html>

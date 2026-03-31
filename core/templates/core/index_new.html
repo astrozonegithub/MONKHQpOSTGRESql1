@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+
+{% block title %}MonkHQ Studio - Digital Agency{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-fade-in">
+                    Transform Your 
+                    <span class="accent">Digital Presence</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in-delay">
+                    MonkHQ Studio delivers cutting-edge digital solutions that drive growth and engagement for forward-thinking businesses.
+                </p>
+                <div class="hero-actions animate-fade-in-delay-2">
+                    <a href="#services" class="btn btn-primary">Explore Our Services</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-in-delay">
+                <div class="hero-graphic">
+                    <div class="graphic-element"></div>
+                    <div class="graphic-element"></div>
+                    <div class="graphic-element"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive solutions powered by AI Software Store to elevate your digital presence</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                <h3 class="service-title">{{ service.title }}</h3>
+                <p class="service-description">{{ service.description }}</p>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Don't just take our word for it, hear from our satisfied clients</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card animate-on-scroll {% if testimonial.featured %}featured{% endif %}">
+                <div class="testimonial-rating">
+                    {% for i in testimonial.rating|make_list %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% for i in testimonial.rating|make_list %}
+                        {% if forloop.counter0 < 5 %}
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <blockquote class="testimonial-content">
+                    "{{ testimonial.content }}"
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4 class="author-name">{{ testimonial.client_name }}</h4>
+                        <p class="author-company">{{ testimonial.company }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

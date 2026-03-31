@@ -1,0 +1,61 @@
+name: monkhq
+services:
+  - name: monkhq-web
+    source_dir: .
+    build_command: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate --noinput
+    run_command: gunicorn monkhq.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    environment_variables:
+      - key: DJANGO_SETTINGS_MODULE
+        value: monkhq.settings
+      - key: SECRET_KEY
+        value: django-insecure-change-this-in-production-replace-with-secure-key
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*.koyeb.app,monkhq.com,www.monkhq.com"
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_OKZUyG06jRIE@ep-tiny-field-an0w3uqj-pooler.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: REDIS_URL
+        value: redis://redis:6379/1
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USE_TLS
+        value: "True"
+      - key: DEFAULT_FROM_EMAIL
+        value: hello@monkhq.com
+    instance_type: nano
+    ports:
+      - port: 8000
+        protocol: http
+    routes:
+      - path: /
+    health_check:
+      path: /
+      port: 8000
+      protocol: http
+      grace_period: 10
+      check_interval: 15
+      timeout: 5
+    scaling:
+      min: 1
+      max: 3
+      target_cpu_percent: 70
+    regions:
+      - was
+      - fra
+      - sin
+  - name: redis
+    image: redis:7-alpine
+    instance_type: nano
+    ports:
+      - port: 6379
+        protocol: tcp
+    scaling:
+      min: 1
+      max: 1
