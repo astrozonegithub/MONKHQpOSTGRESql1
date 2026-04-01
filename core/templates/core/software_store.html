@@ -274,32 +274,6 @@
   .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--text); }
 
-  /* Mobile drawer */
-  .nav-drawer {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    padding: 16px 20px;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-  }
-
-  .nav-drawer.open { display: flex; }
-
-  .nav-drawer .nav-link {
-    font-size: 13px;
-    padding: 10px 14px;
-  }
-
-  .nav-drawer-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    margin-top: 8px;
-  }
-
   /* Responsive navbar */
   @media (max-width: 860px) {
     .nav-links { display: none; }
@@ -1279,20 +1253,6 @@
     </button>
 
   </div>
-
-  <!-- Mobile Drawer -->
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="{% url 'core:website_development' %}" class="nav-link"><span class="nav-prefix">~/</span>Website Development</a>
-    <a href="{% url 'core:influencer_marketing' %}" class="nav-link"><span class="nav-prefix">~/</span>Influencer Marketing</a>
-    <a href="{% url 'core:ai_agent' %}" class="nav-link"><span class="nav-prefix">~/</span>AI Agent</a>
-    <a href="{% url 'core:software_store' %}" class="nav-link active"><span class="nav-prefix">~/</span>Software Store</a>
-    <a href="{% url 'core:contact' %}" class="nav-link"><span class="nav-prefix">~/</span>Contact</a>
-    <div class="nav-drawer-actions">
-      <a href="#contact" class="btn btn-primary" style="justify-content:center;">
-        <i class="fas fa-terminal" style="font-size:11px;"></i> Get in Touch
-      </a>
-    </div>
-  </div>
 </nav>
 
 <div class="page-wrapper">
@@ -1736,10 +1696,8 @@
 </div>
 
 <script>
-  /* ── NAVBAR: scroll effect + hamburger ── */
+  /* ── NAVBAR: scroll effect ── */
   var navbar = document.getElementById('main-navbar');
-  var hamburger = document.getElementById('nav-hamburger');
-  var drawer = document.getElementById('nav-drawer');
 
   window.addEventListener('scroll', function() {
     if (window.scrollY > 20) {
@@ -1747,19 +1705,6 @@
     } else {
       navbar.classList.remove('scrolled');
     }
-  });
-
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    drawer.classList.toggle('open');
-  });
-
-  /* Close drawer when a link inside it is clicked */
-  drawer.querySelectorAll('.nav-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      drawer.classList.remove('open');
-    });
   });
 
   /* ── MODAL ── */
