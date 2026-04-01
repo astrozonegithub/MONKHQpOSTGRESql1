@@ -249,38 +249,12 @@
     box-shadow: 0 0 18px rgba(88,166,255,0.25);
   }
 
-  /* Hamburger */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-    margin-left: auto;
-  }
-
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--muted);
-    border-radius: 2px;
-    transition: transform 0.25s, opacity 0.25s;
-  }
-
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--text); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--text); }
-
   /* Responsive navbar */
   @media (max-width: 860px) {
     .nav-links { display: none; }
     .nav-divider { display: none; }
     .nav-status { display: none; }
     .nav-right .nav-btn-contact { display: none; }
-    .nav-hamburger { display: flex; }
     .navbar-inner { gap: 16px; }
   }
 
@@ -1245,14 +1219,7 @@
       </a>
     </div>
 
-    <!-- Hamburger -->
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-  </div>
+    </div>
 </nav>
 
 <div class="page-wrapper">
