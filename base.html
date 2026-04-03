@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}MonkHQ is a leading digital agency specializing in website development, influencer marketing, AI agents, and custom software solutions. We transform businesses through innovative technology and strategic partnerships.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}website development, influencer marketing, AI agents, software development, digital agency, web design, social media marketing, artificial intelligence, custom software, MonkHQ{% endblock %}">
+    <meta name="author" content="MonkHQ Digital Agency">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{% block og_title %}MonkHQ - Digital Agency{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}MonkHQ is a leading digital agency specializing in website development, influencer marketing, AI agents, and custom software solutions.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://monkhq.com/static/images/og-image.jpg{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}https://monkhq.com{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MonkHQ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}MonkHQ - Digital Agency{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}MonkHQ is a leading digital agency specializing in website development, influencer marketing, AI agents, and custom software solutions.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://monkhq.com/static/images/og-image.jpg{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}https://monkhq.com{% endblock %}">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MonkHQ",
+      "url": "https://monkhq.com",
+      "logo": "https://monkhq.com/static/images/logo.png",
+      "description": "MonkHQ is a leading digital agency specializing in website development, influencer marketing, AI agents, and custom software solutions.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "India"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-XXXXXXXXXX",
+        "contactType": "customer service",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://twitter.com/monkhq",
+        "https://instagram.com/monkhq",
+        "https://linkedin.com/company/monkhq"
+      ],
+      "services": [
+        "Website Development",
+        "Influencer Marketing", 
+        "AI Agent Development",
+        "Custom Software Solutions"
+      ]
+    }
+    </script>
+    <title>{% block title %}MonkHQ - Digital Agency{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <a href="{% url 'core:home' %}" class="logo-link">
+                        <h1 class="logo-text">MonkHQ <span style="font-size: 0.6em; color: #2563EB;">Studio</span></h1>
+                    </a>
+                </div>
+                
+            
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+        
+        <!-- AI Powered Badge -->
+        <div class="ai-powered-badge">
+            <div class="ai-container">
+                <div class="ai-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="ai-text">
+                    <span class="ai-label">POWERED BY</span>
+                    <span class="ai-title">AI TECHNOLOGY</span>
+                </div>
+                <div class="ai-pulse"></div>
+            </div>
+        </div>
+        
+     
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
