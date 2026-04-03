@@ -915,17 +915,17 @@ footer {
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="footer-logo">Monk<span>HQ</span> Studio</div>
-  <p class="footer-copy">© 2026 MonkHQ Studio. All rights reserved.</p>
+  <p class="footer-copy"> 2026 MonkHQ Studio. All rights reserved.</p>
   <ul class="footer-links">
     <li><a href="#">Privacy</a></li>
     <li><a href="#">Terms</a></li>
     <li><a href="#">Sitemap</a></li>
   </ul>
 </footer>
-
-</main>
 
 <script>
 // Cursor
@@ -939,13 +939,13 @@ document.querySelectorAll('a,button,.svc,.wc,.tc').forEach(el => {
 });
 
 // Mobile menu
-const hambBtn = document.getElementById('hambBtn');
+const navToggle = document.getElementById('navToggle');
 const mobMenu = document.getElementById('mobMenu');
 const mobClose = document.getElementById('mobClose');
 let open = false;
-function openMenu(){ open=true; hambBtn.classList.add('open'); mobMenu.classList.add('open'); hambBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-function closeMenu(){ open=false; hambBtn.classList.remove('open'); mobMenu.classList.remove('open'); hambBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
-hambBtn.addEventListener('click',()=>open?closeMenu():openMenu());
+function openMenu(){ open=true; navToggle.classList.add('open'); mobMenu.classList.add('open'); navToggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+function closeMenu(){ open=false; navToggle.classList.remove('open'); mobMenu.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+navToggle.addEventListener('click',()=>open?closeMenu():openMenu());
 mobClose.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&open)closeMenu(); });
 
