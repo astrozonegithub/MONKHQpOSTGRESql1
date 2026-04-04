@@ -31,7 +31,6 @@ body {
   cursor: none;
 }
 
-/* Grain overlay */
 body::after {
   content: '';
   position: fixed; inset: 0;
@@ -162,30 +161,46 @@ nav {
   position: relative; overflow: hidden;
 }
 
-/* Big diagonal stripe */
 .hero-stripe {
   position: absolute;
   top: -10%; right: -5%;
-  width: 55%; height: 130%;
+  width: 45%; height: 130%;
   background: var(--lime);
   transform: skewX(-8deg);
   transform-origin: top right;
   z-index: 0;
 }
 
+/* Full-width hero body, no right panel */
 .hero-body {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: center;
   position: relative; z-index: 1;
   min-height: calc(100svh - 64px - 80px);
+  padding: 5rem 3.5rem;
 }
 
 .hero-left {
-  padding: 5rem 3.5rem; display: flex; flex-direction: column; justify-content: center;
+  max-width: 700px;
+  display: flex; flex-direction: column; justify-content: center;
 }
-.hero-right {
-  display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
-  padding: 5rem 3.5rem; position: relative;
+
+h1.hero-h1 {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 900;
+  line-height: .95;
+  letter-spacing: -.04em;
+  color: var(--b);
+  margin-bottom: 2.5rem;
+  opacity: 0; animation: slideRight .7s .2s cubic-bezier(.22,1,.36,1) forwards;
 }
+h1.hero-h1 .outline {
+  -webkit-text-stroke: 3px var(--b);
+  color: transparent;
+}
+h1.hero-h1 .lime { color: var(--lime); -webkit-text-stroke: 0; }
+h1.hero-h1 .on-lime { color: var(--b); -webkit-text-stroke: 0; }
 
 .hero-tag {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -199,27 +214,9 @@ nav {
 .hero-tag-dot { width: 6px; height: 6px; background: var(--b); border-radius: 50%; animation: blink 1.2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-h1.hero-h1 {
-  font-family: var(--display);
-  font-size: clamp(3rem, 7vw, 7.5rem);
-  font-weight: 900;
-  line-height: .95;
-  letter-spacing: -.04em;
-  color: var(--b);
-  margin-bottom: 2.5rem;
-  opacity: 0; animation: slideRight .7s .2s cubic-bezier(.22,1,.36,1) forwards;
-}
-h1.hero-h1 .outline {
-  -webkit-text-stroke: 3px var(--b);
-  color: transparent;
-}
-h1.hero-h1 .lime { color: var(--lime); -webkit-text-stroke: 0; }
-/* lime text on lime bg — invert */
-h1.hero-h1 .on-lime { color: var(--b); -webkit-text-stroke: 0; }
-
 .hero-sub {
-  font-size: .92rem; line-height: 1.8; color: rgba(10,10,10,.6);
-  max-width: 380px; margin-bottom: 3rem;
+  font-size: .95rem; line-height: 1.8; color: rgba(10,10,10,.6);
+  max-width: 480px; margin-bottom: 3rem;
   opacity: 0; animation: fadeUp .6s .4s forwards;
 }
 .hero-btns {
@@ -244,38 +241,6 @@ h1.hero-h1 .on-lime { color: var(--b); -webkit-text-stroke: 0; }
   border: 2px solid var(--b); transition: background .25s, color .25s;
 }
 .btn-strk:hover { background: var(--b); color: var(--w); }
-
-/* Right side floating card */
-.hero-float-card {
-  background: var(--w); border: 2px solid var(--b);
-  padding: 2.5rem; width: 100%; max-width: 340px;
-  position: relative;
-  box-shadow: 8px 8px 0 var(--b);
-  opacity: 0; animation: popIn .7s .5s cubic-bezier(.34,1.56,.64,1) forwards;
-}
-.hero-card-label {
-  font-family: var(--display); font-size: .5rem; font-weight: 700;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--mid);
-  margin-bottom: 1.5rem;
-}
-.hero-services-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.hero-services-list li {
-  font-family: var(--display); font-size: .75rem; font-weight: 400;
-  color: var(--b); padding: .85rem 0;
-  border-bottom: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-  cursor: pointer; transition: color .2s;
-}
-.hero-services-list li:last-child { border-bottom: none; }
-.hero-services-list li:hover { color: var(--violet); }
-.hero-services-list li i { font-size: .55rem; color: var(--lime); background: var(--b); padding: .3rem; }
-.hero-card-badge {
-  position: absolute; top: -16px; right: 20px;
-  background: var(--lime); border: 2px solid var(--b);
-  font-family: var(--display); font-size: .5rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: .35rem .8rem; color: var(--b);
-}
 
 /* Scroll ticker */
 .hero-ticker {
@@ -302,7 +267,7 @@ h1.hero-h1 .on-lime { color: var(--b); -webkit-text-stroke: 0; }
 }
 .ticker-sep { color: var(--lime); font-size: .5rem; }
 
-/* ── ABOUT / INTRO ── */
+/* ── ABOUT ── */
 .about {
   display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: 2px solid var(--b);
@@ -534,7 +499,7 @@ h2.big-h.inv em { color: var(--lime); }
 /* ── FOOTER ── */
 footer {
   display:flex;justify-content:space-between;align-items:center;
-  padding:1.5rem 3.5rem; border-bottom:none; background:var(--b); flex-wrap:wrap; gap:1rem;
+  padding:1.5rem 3.5rem; background:var(--b); flex-wrap:wrap; gap:1rem;
 }
 .footer-logo { font-family:var(--display);font-size:.75rem;font-weight:900;letter-spacing:-.02em;color:rgba(255,255,255,.2); }
 .footer-logo span { color:var(--lime); }
@@ -564,10 +529,8 @@ footer {
   .hamburger { display:flex; }
   .nav-logo { border-right:none; padding-right:0; }
 
-  .hero-body { grid-template-columns:1fr; }
+  .hero-body { padding: 3rem 1.4rem; }
   .hero-stripe { width:90%; top:0; height:50%; right:-5%; transform:none; border-radius:0 0 0 30%; }
-  .hero-left { padding:3rem 1.4rem; }
-  .hero-right { display:none; }
   h1.hero-h1 { font-size:clamp(2.8rem,12vw,4.5rem); }
   h1.hero-h1 .outline { -webkit-text-stroke:2px var(--b); }
   .hero-sub { font-size:.84rem; }
@@ -660,20 +623,7 @@ footer {
       <p class="hero-sub">Transforming ambitious ideas into exceptional digital experiences that command attention and drive measurable growth.</p>
       <div class="hero-btns">
         <a href="#work" class="btn-blk">View Our Work <i class="fas fa-arrow-right"></i></a>
-        <a href="#" class="btn-strk">Start a Project</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-float-card">
-        <div class="hero-card-badge">Services</div>
-        <p class="hero-card-label">What We Do</p>
-        <ul class="hero-services-list">
-          <li>Web Development <i class="fas fa-arrow-right"></i></li>
-          <li>Influencer Marketing <i class="fas fa-arrow-right"></i></li>
-          <li>AI Agents <i class="fas fa-arrow-right"></i></li>
-          <li>UI/UX Design <i class="fas fa-arrow-right"></i></li>
-          <li>SEO & Growth <i class="fas fa-arrow-right"></i></li>
-        </ul>
+        <a href="#contact" class="btn-strk">Start a Project</a>
       </div>
     </div>
   </div>
@@ -919,7 +869,7 @@ footer {
 
 <footer>
   <div class="footer-logo">Monk<span>HQ</span> Studio</div>
-  <p class="footer-copy"> 2026 MonkHQ Studio. All rights reserved.</p>
+  <p class="footer-copy">© 2026 MonkHQ Studio. All rights reserved.</p>
   <ul class="footer-links">
     <li><a href="#">Privacy</a></li>
     <li><a href="#">Terms</a></li>
@@ -931,8 +881,11 @@ footer {
 // Cursor
 const cur = document.getElementById('cur');
 const trail = document.getElementById('cur-trail');
-let tx = 0, ty = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; cur.style.left=tx+'px'; cur.style.top=ty+'px'; setTimeout(()=>{ trail.style.left=tx+'px'; trail.style.top=ty+'px'; }, 100); });
+document.addEventListener('mousemove', e => {
+  const tx = e.clientX, ty = e.clientY;
+  cur.style.left=tx+'px'; cur.style.top=ty+'px';
+  setTimeout(()=>{ trail.style.left=tx+'px'; trail.style.top=ty+'px'; }, 100);
+});
 document.querySelectorAll('a,button,.svc,.wc,.tc').forEach(el => {
   el.addEventListener('mouseenter',()=>cur.classList.add('big'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
