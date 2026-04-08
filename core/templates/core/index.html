@@ -8,10 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root {
-  --w: #ffffff; --b: #0a0a0a; --lime: #c6f135; --violet: #6c3bff;
-  --mid: #888; --border: #e0e0e0;
-  --display: 'Unbounded', sans-serif; --body: 'Plus Jakarta Sans', sans-serif;
+:root{
+  --w:#ffffff;--b:#0a0a0a;--lime:#c6f135;--violet:#6c3bff;
+  --mid:#888;--border:#e0e0e0;
+  --display:'Unbounded',sans-serif;--body:'Plus Jakarta Sans',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -65,31 +65,24 @@ h1.hero-h1 .outline{-webkit-text-stroke:3px var(--b);color:transparent}
 .btn-strk{font-family:var(--display);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--b);padding:1rem 2.2rem;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--b);transition:background .25s,color .25s}
 .btn-strk:hover{background:var(--b);color:var(--w)}
 
-/* HERO RIGHT GRAPHIC */
 /* HERO RIGHT */
 .hero-right{display:flex;align-items:flex-end;justify-content:center;position:relative;overflow:hidden;padding:0}
 .hero-right::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,10,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.06) 1px,transparent 1px);background-size:38px 38px;pointer-events:none;z-index:0}
-
-/* Character illustration wrapper */
-.hero-char{position:relative;z-index:2;height:100%;display:flex;align-items:flex-end;justify-content:center;opacity:0;animation:charIn .9s .5s cubic-bezier(.22,1,.36,1) forwards}
+.hero-char{position:relative;z-index:2;height:100%;width:100%;display:flex;align-items:flex-end;justify-content:center;opacity:0;animation:charIn .9s .5s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes charIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hero-char svg{height:calc(100svh - 64px - 80px);max-height:640px;min-height:380px;width:auto;display:block}
 
-.hero-char svg{height:calc(100svh - 64px - 80px);max-height:640px;min-height:420px;width:auto;display:block}
-
-/* Floating stat pills */
+/* Stat pills */
 .hg-pill{position:absolute;background:var(--b);border:2px solid var(--b);padding:.55rem 1.1rem;display:flex;align-items:center;gap:.7rem;box-shadow:4px 4px 0 rgba(10,10,10,.2);z-index:30;animation:float 4s ease-in-out infinite}
-.hg-pill:nth-child(2){top:12%;left:6%;animation-delay:0s}
-.hg-pill:nth-child(3){top:38%;right:6%;animation-delay:1.4s}
-.hg-pill:nth-child(4){bottom:18%;left:8%;animation-delay:2.5s}
 .hg-pill-num{font-family:var(--display);font-size:1.1rem;font-weight:900;color:var(--lime);line-height:1;letter-spacing:-.03em}
 .hg-pill-label{font-family:var(--display);font-size:.3rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1.5}
 
-/* Corner accents */
+/* Corner accents on hero-right */
 .hg-corner{position:absolute;width:22px;height:22px;border:2.5px solid var(--b);z-index:5}
-.hg-corner:nth-child(5){top:0;left:0;border-right:none;border-bottom:none;background:var(--lime)}
-.hg-corner:nth-child(6){top:0;right:0;border-left:none;border-bottom:none;background:var(--b)}
-.hg-corner:nth-child(7){bottom:0;left:0;border-right:none;border-top:none;background:var(--b)}
-.hg-corner:nth-child(8){bottom:0;right:0;border-left:none;border-top:none;background:var(--lime)}
+.hg-corner.tl{top:0;left:0;border-right:none;border-bottom:none;background:var(--lime)}
+.hg-corner.tr{top:0;right:0;border-left:none;border-bottom:none;background:var(--b)}
+.hg-corner.bl{bottom:0;left:0;border-right:none;border-top:none;background:var(--b)}
+.hg-corner.br{bottom:0;right:0;border-left:none;border-top:none;background:var(--lime)}
 
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
@@ -210,6 +203,7 @@ h2.big-h.inv em{color:var(--lime)}
 .social-link{width:44px;height:44px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);text-decoration:none;font-size:.85rem;transition:background .3s,border-color .3s,color .3s}
 .social-link:hover{background:var(--lime);border-color:var(--lime);color:var(--b)}
 
+/* FOOTER */
 footer{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3.5rem;background:var(--b);flex-wrap:wrap;gap:1rem}
 .footer-logo{font-family:var(--display);font-size:.75rem;font-weight:900;letter-spacing:-.02em;color:rgba(255,255,255,.2)}
 .footer-logo span{color:var(--lime)}
@@ -218,9 +212,11 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
 .footer-links a{font-family:var(--display);font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;transition:color .25s}
 .footer-links a:hover{color:var(--lime)}
 
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .reveal.v{opacity:1;transform:translateY(0)}
 
+/* KEYFRAMES */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes slideRight{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
 @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
@@ -230,14 +226,15 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
 ::-webkit-scrollbar-track{background:var(--w)}
 ::-webkit-scrollbar-thumb{background:var(--lime)}
 
+/* MOBILE */
 @media(max-width:900px){
   nav{padding:0 1.2rem}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
   .nav-logo{border-right:none;padding-right:0}
   .hero-body{grid-template-columns:1fr}
-  .hero-stripe{width:100%;top:0;height:100%;right:0;transform:none;opacity:.4}
-  .hero-left{padding:3rem 1.4rem}
+  .hero-stripe{width:100%;height:100%;top:0;right:0;transform:none;opacity:.4}
+  .hero-left{padding:3.5rem 1.4rem}
   .hero-right{display:none !important}
   h1.hero-h1{font-size:clamp(2.8rem,12vw,4.5rem)}
   h1.hero-h1 .outline{-webkit-text-stroke:2px var(--b)}
@@ -271,6 +268,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
 <div id="cur"></div>
 <div id="cur-trail"></div>
 
+<!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu">
   <button class="mob-close" id="mobClose"><i class="fas fa-times"></i></button>
   <ul>
@@ -283,6 +281,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   <a href="/contact/" class="mob-cta" onclick="closeMenu()">Start a Project →</a>
 </div>
 
+<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo"><span class="nav-logo-dot"></span>MonkHQ</a>
   <ul class="nav-links">
@@ -299,10 +298,13 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
 </nav>
 
 <main>
+
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-stripe" aria-hidden="true"></div>
   <div class="hero-body">
 
+    <!-- LEFT -->
     <div class="hero-left">
       <div class="hero-tag"><span class="hero-tag-dot"></span> Premier Digital Agency — Est. 2012</div>
       <h1 class="hero-h1">WE<br><span class="outline">BUILD</span><br><span class="outline">DIGITAL</span><br>WORLDS</h1>
@@ -313,178 +315,183 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
       </div>
     </div>
 
+    <!-- RIGHT: flat illustrated character -->
     <div class="hero-right">
-      <!-- corner accents -->
-      <div class="hg-corner"></div>
-      <div class="hg-corner"></div>
-      <div class="hg-corner"></div>
-      <div class="hg-corner"></div>
+      <div class="hg-corner tl"></div>
+      <div class="hg-corner tr"></div>
+      <div class="hg-corner bl"></div>
+      <div class="hg-corner br"></div>
 
-      <!-- floating stat pills -->
-      <div class="hg-pill" style="top:10%;left:5%"><div class="hg-pill-num">150+</div><div class="hg-pill-label">Projects<br>Delivered</div></div>
-      <div class="hg-pill" style="top:36%;right:5%"><div class="hg-pill-num">98%</div><div class="hg-pill-label">Client<br>Satisfaction</div></div>
-      <div class="hg-pill" style="bottom:22%;left:5%"><div class="hg-pill-num">12+</div><div class="hg-pill-label">Years of<br>Excellence</div></div>
+      <!-- Stat pills -->
+      <div class="hg-pill" style="top:10%;left:5%;animation-delay:0s">
+        <div class="hg-pill-num">150+</div><div class="hg-pill-label">Projects<br>Delivered</div>
+      </div>
+      <div class="hg-pill" style="top:40%;right:5%;animation-delay:1.5s">
+        <div class="hg-pill-num">98%</div><div class="hg-pill-label">Client<br>Satisfaction</div>
+      </div>
+      <div class="hg-pill" style="bottom:20%;left:5%;animation-delay:2.8s">
+        <div class="hg-pill-num">12+</div><div class="hg-pill-label">Years of<br>Excellence</div>
+      </div>
 
-      <!-- flat illustrated character -->
+      <!-- SVG Character -->
       <div class="hero-char">
-        <svg viewBox="0 0 320 620" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Shadow -->
-          <ellipse cx="160" cy="610" rx="72" ry="10" fill="rgba(0,0,0,0.10)"/>
+        <svg viewBox="0 0 300 580" xmlns="http://www.w3.org/2000/svg">
+          <!-- ground shadow -->
+          <ellipse cx="150" cy="572" rx="68" ry="8" fill="rgba(0,0,0,0.09)"/>
 
-          <!-- SAREE — back drape flowing behind -->
-          <path d="M90 370 Q60 420 55 520 Q53 570 80 600 L105 600 Q95 570 98 520 Q102 450 118 390Z" fill="#d4e8b0"/>
-          <path d="M90 370 Q60 420 55 520 Q53 570 80 600 L105 600 Q95 570 98 520 Q102 450 118 390Z" fill="none" stroke="#b5cc90" stroke-width="1.2"/>
+          <!-- ── SAREE BACK DRAPE ── -->
+          <path d="M82 340 Q60 390 58 490 Q56 540 78 568 L100 568 Q88 540 92 488 Q96 420 112 365Z" fill="#d6edaa"/>
+          <path d="M82 340 Q60 390 58 490 Q56 540 78 568 L100 568 Q88 540 92 488 Q96 420 112 365Z" fill="none" stroke="#aecf7a" stroke-width="1.2"/>
 
-          <!-- LEGS / LOWER BODY base -->
-          <path d="M112 430 Q108 500 106 600 L148 600 Q146 500 145 430Z" fill="#e8f5c8"/>
-          <path d="M208 430 Q212 500 214 600 L172 600 Q174 500 175 430Z" fill="#e8f5c8"/>
+          <!-- ── SAREE LOWER BODY ── -->
+          <path d="M108 400 Q105 480 104 568 L145 568 Q143 480 143 400Z" fill="#e2f5be"/>
+          <path d="M192 400 Q195 480 196 568 L157 568 Q158 480 157 400Z" fill="#e2f5be"/>
 
-          <!-- SAREE body wrap — main drape -->
-          <path d="M105 270 Q88 310 88 370 Q88 420 110 440 L160 448 L210 440 Q232 420 232 370 Q232 310 215 270Z" fill="#c8e89a"/>
-          <!-- saree border trim -->
-          <path d="M105 270 Q88 310 88 370 Q88 420 110 440" fill="none" stroke="#8bb854" stroke-width="3"/>
-          <path d="M215 270 Q232 310 232 370 Q232 420 210 440" fill="none" stroke="#8bb854" stroke-width="3"/>
+          <!-- saree main drape body -->
+          <path d="M100 255 Q84 295 84 350 Q84 400 106 415 L150 422 L194 415 Q216 400 216 350 Q216 295 200 255Z" fill="#c8e88a"/>
+          <!-- saree left border -->
+          <path d="M100 255 Q84 295 84 350 Q84 400 106 415" fill="none" stroke="#8ab84a" stroke-width="3"/>
+          <!-- saree right border -->
+          <path d="M200 255 Q216 295 216 350 Q216 400 194 415" fill="none" stroke="#8ab84a" stroke-width="3"/>
 
-          <!-- SAREE pallu (shoulder drape) -->
-          <path d="M160 230 Q125 240 108 270 Q100 290 105 310 L120 305 Q118 288 128 275 Q148 258 165 255Z" fill="#d4f0a0"/>
-          <path d="M160 230 Q125 240 108 270 Q100 290 105 310" fill="none" stroke="#8bb854" stroke-width="2"/>
-          <!-- pallu border gold trim -->
-          <path d="M105 270 Q100 290 105 310 L120 305 Q116 288 122 272Z" fill="#f5c842" opacity="0.7"/>
+          <!-- gold dots on left border -->
+          <circle cx="97" cy="268" r="2.5" fill="#f5c842"/>
+          <circle cx="92" cy="288" r="2.5" fill="#f5c842"/>
+          <circle cx="88" cy="310" r="2.5" fill="#f5c842"/>
+          <circle cx="86" cy="332" r="2.5" fill="#f5c842"/>
+          <circle cx="86" cy="354" r="2.5" fill="#f5c842"/>
+          <circle cx="90" cy="374" r="2.5" fill="#f5c842"/>
+          <!-- gold dots on right border -->
+          <circle cx="203" cy="268" r="2.5" fill="#f5c842"/>
+          <circle cx="208" cy="288" r="2.5" fill="#f5c842"/>
+          <circle cx="212" cy="310" r="2.5" fill="#f5c842"/>
+          <circle cx="214" cy="332" r="2.5" fill="#f5c842"/>
+          <circle cx="214" cy="354" r="2.5" fill="#f5c842"/>
+          <circle cx="210" cy="374" r="2.5" fill="#f5c842"/>
 
-          <!-- BLOUSE (choli) -->
-          <path d="M128 225 Q120 240 118 270 L202 270 Q200 240 192 225 Q175 210 160 210 Q145 210 128 225Z" fill="#7dc8f0"/>
-          <!-- blouse neckline -->
-          <path d="M140 225 Q155 218 160 216 Q165 218 180 225" fill="none" stroke="#5aa8d0" stroke-width="1.5"/>
+          <!-- saree pleats -->
+          <line x1="140" y1="258" x2="138" y2="415" stroke="#a0c870" stroke-width="1.2" opacity="0.7"/>
+          <line x1="150" y1="257" x2="148" y2="415" stroke="#a0c870" stroke-width="1.2" opacity="0.7"/>
+          <line x1="160" y1="257" x2="158" y2="415" stroke="#a0c870" stroke-width="1.2" opacity="0.7"/>
+          <line x1="170" y1="258" x2="168" y2="415" stroke="#a0c870" stroke-width="1.2" opacity="0.7"/>
 
-          <!-- SAREE waist fold detail -->
-          <path d="M118 268 L202 268" stroke="#8bb854" stroke-width="1.5" opacity="0.6"/>
-          <path d="M115 275 L205 275" stroke="#8bb854" stroke-width="1" opacity="0.4"/>
+          <!-- pallu / shoulder drape -->
+          <path d="M150 218 Q118 226 102 255 Q95 272 100 290 L114 286 Q112 272 120 260 Q138 244 152 242Z" fill="#d8f0a8"/>
+          <path d="M150 218 Q118 226 102 255 Q95 272 100 290" fill="none" stroke="#8ab84a" stroke-width="1.8"/>
+          <!-- pallu gold trim -->
+          <path d="M100 255 Q95 272 100 290 L114 286 Q110 272 116 258Z" fill="#f5c842" opacity="0.65"/>
 
-          <!-- Saree pleats at front -->
-          <path d="M145 275 Q143 340 142 440" stroke="#a0cc70" stroke-width="1.2" opacity="0.7"/>
-          <path d="M155 274 Q153 340 152 440" stroke="#a0cc70" stroke-width="1.2" opacity="0.7"/>
-          <path d="M165 274 Q163 340 162 440" stroke="#a0cc70" stroke-width="1.2" opacity="0.7"/>
-          <path d="M175 274 Q173 340 172 440" stroke="#a0cc70" stroke-width="1.2" opacity="0.7"/>
+          <!-- ── BLOUSE ── -->
+          <path d="M122 212 Q114 230 112 256 L188 256 Q186 230 178 212 Q165 198 150 197 Q135 198 122 212Z" fill="#5bb8e8"/>
+          <!-- blouse neckline curve -->
+          <path d="M134 212 Q150 205 166 212" fill="none" stroke="#3a98c8" stroke-width="1.5"/>
+          <!-- waist fold -->
+          <line x1="112" y1="254" x2="188" y2="254" stroke="#8ab84a" stroke-width="1.5" opacity="0.6"/>
 
-          <!-- LEFT ARM -->
-          <path d="M118 230 Q95 250 85 290 Q80 315 88 330 Q96 338 104 325 Q100 308 104 285 Q112 262 126 248Z" fill="#f2c4a0"/>
+          <!-- ── LEFT ARM ── -->
+          <path d="M112 218 Q90 238 80 275 Q75 298 82 312 Q90 322 100 312 Q96 295 100 272 Q108 250 120 235Z" fill="#f0b898"/>
           <!-- left hand -->
-          <ellipse cx="90" cy="333" rx="10" ry="13" fill="#f2c4a0"/>
-          <!-- fingers hint -->
-          <path d="M83 330 Q80 340 82 345" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M88 333 Q86 344 88 348" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M94 332 Q93 343 95 347" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M99 330 Q99 339 100 343" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- bangles -->
-          <ellipse cx="90" cy="320" rx="11" ry="5" fill="none" stroke="#f5c842" stroke-width="2.5"/>
-          <ellipse cx="90" cy="326" rx="11" ry="5" fill="none" stroke="#e87040" stroke-width="2"/>
+          <ellipse cx="84" cy="316" rx="10" ry="12" fill="#f0b898"/>
+          <path d="M77 313 Q74 323 76 328" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M83 316 Q81 327 83 331" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M89 315 Q88 326 90 330" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M94 313 Q94 322 95 326" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- bangles left -->
+          <ellipse cx="84" cy="304" rx="11" ry="4.5" fill="none" stroke="#f5c842" stroke-width="2.5"/>
+          <ellipse cx="84" cy="310" rx="11" ry="4.5" fill="none" stroke="#c6f135" stroke-width="2"/>
 
-          <!-- RIGHT ARM -->
-          <path d="M202 230 Q225 250 235 285 Q240 308 236 322 Q228 338 218 328 Q222 310 218 288 Q210 262 196 248Z" fill="#f2c4a0"/>
+          <!-- ── RIGHT ARM ── -->
+          <path d="M188 218 Q210 238 220 272 Q225 295 218 310 Q210 322 200 312 Q204 294 200 272 Q192 250 180 235Z" fill="#f0b898"/>
           <!-- right hand -->
-          <ellipse cx="233" cy="326" rx="10" ry="13" fill="#f2c4a0"/>
-          <!-- fingers -->
-          <path d="M226 323 Q223 333 225 338" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M231 326 Q229 337 231 341" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M237 325 Q236 336 238 340" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M241 322 Q241 331 242 336" stroke="#e0a888" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- bangles -->
-          <ellipse cx="233" cy="313" rx="11" ry="5" fill="none" stroke="#f5c842" stroke-width="2.5"/>
-          <ellipse cx="233" cy="319" rx="11" ry="5" fill="none" stroke="#c6f135" stroke-width="2"/>
+          <ellipse cx="216" cy="314" rx="10" ry="12" fill="#f0b898"/>
+          <path d="M209 311 Q206 321 208 326" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M215 314 Q213 325 215 329" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M221 313 Q220 324 222 328" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M225 311 Q225 320 226 325" stroke="#d8907a" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- bangles right -->
+          <ellipse cx="216" cy="302" rx="11" ry="4.5" fill="none" stroke="#f5c842" stroke-width="2.5"/>
+          <ellipse cx="216" cy="308" rx="11" ry="4.5" fill="none" stroke="#e87040" stroke-width="2"/>
 
-          <!-- NECK -->
-          <rect x="148" y="195" width="24" height="22" rx="8" fill="#f2c4a0"/>
+          <!-- ── NECK ── -->
+          <rect x="142" y="185" width="22" height="20" rx="7" fill="#f0b898"/>
 
-          <!-- HEAD -->
-          <ellipse cx="160" cy="155" rx="52" ry="58" fill="#f2c4a0"/>
+          <!-- ── HEAD ── -->
+          <ellipse cx="150" cy="140" rx="50" ry="52" fill="#f0b898"/>
 
-          <!-- HAIR — long black hair, left side -->
-          <path d="M108 135 Q100 160 98 200 Q96 240 100 280 Q105 320 108 340 Q118 300 115 260 Q113 220 115 190 Q118 160 120 140Z" fill="#1a1a1a"/>
-          <!-- HAIR — right side -->
-          <path d="M212 135 Q220 160 222 200 Q224 240 220 280 Q218 310 216 330 Q206 295 208 258 Q210 218 207 188 Q204 160 202 140Z" fill="#1a1a1a"/>
-          <!-- HAIR — top/crown -->
-          <path d="M108 130 Q120 78 160 72 Q200 78 212 130 Q200 118 160 115 Q120 118 108 130Z" fill="#1a1a1a"/>
-          <!-- hair part line -->
-          <path d="M160 75 L160 118" stroke="#333" stroke-width="1.5"/>
+          <!-- ── HAIR back layer ── -->
+          <path d="M100 125 Q94 148 92 185 Q90 222 94 260 Q98 295 102 316 Q112 278 110 240 Q108 202 110 174 Q113 148 116 130Z" fill="#181818"/>
+          <path d="M200 125 Q206 148 208 185 Q210 222 206 260 Q202 292 200 312 Q190 275 192 238 Q194 200 192 173 Q189 148 184 130Z" fill="#181818"/>
+          <!-- HAIR top/crown -->
+          <path d="M100 122 Q113 72 150 66 Q187 72 200 122 Q188 110 150 107 Q112 110 100 122Z" fill="#181818"/>
+          <!-- centre part -->
+          <line x1="150" y1="67" x2="150" y2="110" stroke="#2a2a2a" stroke-width="1.5"/>
 
-          <!-- FACE details -->
+          <!-- ── FACE ── -->
           <!-- eyebrows -->
-          <path d="M135 132 Q143 127 151 130" stroke="#3a2010" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <path d="M169 130 Q177 127 185 132" stroke="#3a2010" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-
-          <!-- eyes -->
-          <ellipse cx="143" cy="143" rx="9" ry="7" fill="white"/>
-          <ellipse cx="177" cy="143" rx="9" ry="7" fill="white"/>
-          <circle cx="144" cy="144" r="5" fill="#2c1810"/>
-          <circle cx="178" cy="144" r="5" fill="#2c1810"/>
-          <circle cx="146" cy="142" r="1.8" fill="white"/>
-          <circle cx="180" cy="142" r="1.8" fill="white"/>
-          <!-- eye lashes upper -->
-          <path d="M134 138 Q143 133 152 138" stroke="#1a0a05" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M168 138 Q177 133 186 138" stroke="#1a0a05" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
+          <path d="M128 120 Q136 115 144 118" stroke="#2e1408" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M156 118 Q164 115 172 120" stroke="#2e1408" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- eyes whites -->
+          <ellipse cx="136" cy="130" rx="9" ry="7" fill="white"/>
+          <ellipse cx="164" cy="130" rx="9" ry="7" fill="white"/>
+          <!-- irises -->
+          <circle cx="137" cy="131" r="5" fill="#28140a"/>
+          <circle cx="165" cy="131" r="5" fill="#28140a"/>
+          <!-- pupils highlight -->
+          <circle cx="139" cy="129" r="1.8" fill="white"/>
+          <circle cx="167" cy="129" r="1.8" fill="white"/>
+          <!-- upper lashes -->
+          <path d="M127 124 Q136 119 145 124" stroke="#120804" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M155 124 Q164 119 173 124" stroke="#120804" stroke-width="1.5" fill="none" stroke-linecap="round"/>
           <!-- nose -->
-          <path d="M156 158 Q158 168 160 170 Q162 168 164 158" stroke="#d4957a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <circle cx="155" cy="170" r="2" fill="#d4957a" opacity="0.6"/>
-          <circle cx="165" cy="170" r="2" fill="#d4957a" opacity="0.6"/>
-
+          <path d="M146 144 Q148 153 150 155 Q152 153 154 144" stroke="#cc8868" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <circle cx="146" cy="155" r="2" fill="#cc8868" opacity="0.55"/>
+          <circle cx="154" cy="155" r="2" fill="#cc8868" opacity="0.55"/>
           <!-- smile -->
-          <path d="M148 183 Q160 194 172 183" stroke="#c0785a" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- lip hint -->
-          <path d="M152 183 Q160 188 168 183" fill="#e8907a" opacity="0.5"/>
-
-          <!-- cheek blush -->
-          <ellipse cx="130" cy="173" rx="10" ry="6" fill="#f5a090" opacity="0.3"/>
-          <ellipse cx="190" cy="173" rx="10" ry="6" fill="#f5a090" opacity="0.3"/>
+          <path d="M140 167 Q150 177 160 167" stroke="#b86850" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M143 167 Q150 172 157 167" fill="#e07860" opacity="0.45"/>
+          <!-- cheeks -->
+          <ellipse cx="122" cy="158" rx="10" ry="6" fill="#f09080" opacity="0.28"/>
+          <ellipse cx="178" cy="158" rx="10" ry="6" fill="#f09080" opacity="0.28"/>
 
           <!-- BINDI -->
-          <circle cx="160" cy="122" r="5" fill="#cc2020"/>
-          <circle cx="160" cy="122" r="3" fill="#ff3030"/>
+          <circle cx="150" cy="110" r="5.5" fill="#cc2020"/>
+          <circle cx="150" cy="110" r="3.2" fill="#ff3535"/>
 
-          <!-- EARRINGS — gold hoops -->
-          <ellipse cx="110" cy="160" rx="9" ry="11" fill="none" stroke="#f5c842" stroke-width="3"/>
-          <ellipse cx="210" cy="160" rx="9" ry="11" fill="none" stroke="#f5c842" stroke-width="3"/>
-          <!-- earring studs -->
-          <circle cx="110" cy="149" r="3" fill="#f5c842"/>
-          <circle cx="210" cy="149" r="3" fill="#f5c842"/>
+          <!-- EARRINGS gold hoops -->
+          <ellipse cx="102" cy="147" rx="8" ry="10" fill="none" stroke="#f5c842" stroke-width="3"/>
+          <circle cx="102" cy="137" r="3" fill="#f5c842"/>
+          <ellipse cx="198" cy="147" rx="8" ry="10" fill="none" stroke="#f5c842" stroke-width="3"/>
+          <circle cx="198" cy="137" r="3" fill="#f5c842"/>
 
           <!-- NECKLACE -->
-          <path d="M140 210 Q160 222 180 210" stroke="#f5c842" stroke-width="2" fill="none"/>
-          <circle cx="160" cy="222" r="4" fill="#f5c842"/>
-          <circle cx="148" cy="218" r="2.5" fill="#f5c842"/>
-          <circle cx="172" cy="218" r="2.5" fill="#f5c842"/>
+          <path d="M132 198 Q150 210 168 198" stroke="#f5c842" stroke-width="2" fill="none"/>
+          <circle cx="150" cy="210" r="4" fill="#f5c842"/>
+          <circle cx="139" cy="206" r="2.5" fill="#f5c842"/>
+          <circle cx="161" cy="206" r="2.5" fill="#f5c842"/>
 
-          <!-- FEET / sandals -->
-          <ellipse cx="127" cy="602" rx="22" ry="8" fill="#d4a878"/>
-          <ellipse cx="193" cy="602" rx="22" ry="8" fill="#d4a878"/>
-          <path d="M110 598 Q127 594 144 598" stroke="#c6f135" stroke-width="2" stroke-linecap="round"/>
-          <path d="M176 598 Q193 594 210 598" stroke="#c6f135" stroke-width="2" stroke-linecap="round"/>
+          <!-- FEET sandals -->
+          <ellipse cx="122" cy="570" rx="20" ry="7" fill="#c89a60"/>
+          <ellipse cx="178" cy="570" rx="20" ry="7" fill="#c89a60"/>
+          <path d="M106 567 Q122 562 138 567" stroke="#c6f135" stroke-width="2" stroke-linecap="round"/>
+          <path d="M162 567 Q178 562 194 567" stroke="#c6f135" stroke-width="2" stroke-linecap="round"/>
 
-          <!-- Decorative dots on saree border -->
-          <circle cx="108" cy="280" r="2.5" fill="#f5c842"/>
-          <circle cx="108" cy="300" r="2.5" fill="#f5c842"/>
-          <circle cx="108" cy="320" r="2.5" fill="#f5c842"/>
-          <circle cx="108" cy="340" r="2.5" fill="#f5c842"/>
-          <circle cx="108" cy="360" r="2.5" fill="#f5c842"/>
-          <circle cx="212" cy="280" r="2.5" fill="#f5c842"/>
-          <circle cx="212" cy="300" r="2.5" fill="#f5c842"/>
-          <circle cx="212" cy="320" r="2.5" fill="#f5c842"/>
-          <circle cx="212" cy="340" r="2.5" fill="#f5c842"/>
-          <circle cx="212" cy="360" r="2.5" fill="#f5c842"/>
-
-          <!-- laptop / tablet (professional touch) -->
-          <rect x="86" cy="338" x="86" y="338" width="52" height="36" rx="4" fill="#2a2a2a" transform="rotate(-10 86 338)"/>
-          <rect x="89" y="341" width="46" height="28" rx="2" fill="#c6f135" opacity="0.9" transform="rotate(-10 86 338)"/>
-          <rect x="91" y="343" width="42" height="24" rx="1" fill="#0a0a0a" transform="rotate(-10 86 338)"/>
-          <!-- screen glow lines -->
-          <line x1="93" y1="348" x2="127" y2="345" stroke="#c6f135" stroke-width="1" opacity="0.5" transform="rotate(-10 86 338)"/>
-          <line x1="93" y1="353" x2="120" y2="350" stroke="#c6f135" stroke-width="1" opacity="0.4" transform="rotate(-10 86 338)"/>
-          <line x1="93" y1="358" x2="115" y2="356" stroke="#c6f135" stroke-width="1" opacity="0.3" transform="rotate(-10 86 338)"/>
+          <!-- LAPTOP in left hand -->
+          <g transform="rotate(-12, 84, 316)">
+            <rect x="46" y="312" width="50" height="34" rx="4" fill="#222"/>
+            <rect x="49" y="315" width="44" height="26" rx="2" fill="#c6f135" opacity="0.92"/>
+            <rect x="51" y="317" width="40" height="22" rx="1" fill="#0a0a0a"/>
+            <line x1="53" y1="322" x2="88" y2="322" stroke="#c6f135" stroke-width="1" opacity="0.5"/>
+            <line x1="53" y1="327" x2="82" y2="327" stroke="#c6f135" stroke-width="1" opacity="0.4"/>
+            <line x1="53" y1="332" x2="76" y2="332" stroke="#c6f135" stroke-width="1" opacity="0.3"/>
+            <rect x="51" y="346" width="40" height="3" rx="1" fill="#333"/>
+          </g>
         </svg>
       </div>
     </div>
 
   </div>
+
+  <!-- TICKER -->
   <div class="hero-ticker">
     <span class="ticker-label">Studio · 2026</span>
     <div class="ticker-track">
@@ -494,6 +501,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- ABOUT -->
 <section class="about">
   <div class="about-left">
     <span class="kicker reveal">About the Studio</span>
@@ -516,10 +524,11 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-head">
     <div><span class="kicker reveal">What We Do</span><h2 class="big-h reveal">Our <em>Services</em></h2></div>
-    <p style="font-size:.85rem;line-height:1.8;color:var(--mid);max-width:320px" class="reveal">Comprehensive digital solutions engineered to elevate your brand.</p>
+    <p style="font-size:.85rem;line-height:1.8;color:var(--mid);max-width:320px" class="reveal">Comprehensive digital solutions engineered to elevate your brand in a competitive landscape.</p>
   </div>
   <div class="services-grid">
     <div class="svc reveal"><p class="svc-num">01</p><div class="svc-icon"><i class="fas fa-palette"></i></div><h3 class="svc-name">Brand &<br>Identity</h3><p class="svc-desc">Strategic brand development that defines your unique position and creates lasting emotional connections.</p><a href="#" class="svc-more">Explore <i class="fas fa-arrow-right"></i></a></div>
@@ -531,6 +540,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- WORK -->
 <section class="work" id="work">
   <div class="work-head">
     <div><span class="kicker reveal">Selected Projects</span><h2 class="big-h reveal">Our <em>Work</em></h2></div>
@@ -544,6 +554,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- PROCESS -->
 <section class="process" id="process">
   <div class="process-head">
     <div><span class="kicker reveal">How We Work</span><h2 class="big-h reveal">Our <em>Process</em></h2></div>
@@ -558,6 +569,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section class="testi" id="testimonials">
   <div class="testi-head">
     <div><span class="kicker reveal">Client Voices</span><h2 class="big-h reveal">What They <em>Say</em></h2></div>
@@ -570,15 +582,16 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-left">
     <h2 class="reveal">Let's Build Something<br>Extraordinary</h2>
     <p class="reveal">Ready to transform your digital presence? We'd love to hear about your project and show you what's possible.</p>
-    <a href="/cdn-cgi/l/email-protection#98f0fdf4f4f7d8f5f7f6f3f0e9b6fbf7f5" class="reveal">Start the Conversation <i class="fas fa-arrow-right"></i></a>
+    <a href="mailto:hello@monkhq.com" class="reveal">Start the Conversation <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="cta-right">
     <h2 class="reveal">Drop Us<br>a <span>Line</span></h2>
-    <a href="/cdn-cgi/l/email-protection#cfa7aaa3a3a08fa2a0a1a4a7bee1aca0a2" class="cta-email reveal"><span class="__cf_email__" data-cfemail="e68e838a8a89a68b89888d8e97c885898b">[email&#160;protected]</span></a>
+    <a href="mailto:hello@monkhq.com" class="cta-email reveal">hello@monkhq.com</a>
     <div class="socials reveal">
       <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
       <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -587,6 +600,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
     </div>
   </div>
 </section>
+
 </main>
 
 <footer>
@@ -595,15 +609,15 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:1.5
   <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Sitemap</a></li></ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Cursor
 const cur = document.getElementById('cur');
 const trail = document.getElementById('cur-trail');
 document.addEventListener('mousemove', e => {
-  cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
-  setTimeout(() => { trail.style.left = e.clientX + 'px'; trail.style.top = e.clientY + 'px'; }, 100);
+  cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px';
+  setTimeout(()=>{ trail.style.left = e.clientX+'px'; trail.style.top = e.clientY+'px'; }, 100);
 });
-document.querySelectorAll('a,button,.svc,.wc,.tc,.node-inner').forEach(el => {
+document.querySelectorAll('a,button,.svc,.wc,.tc').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('big'));
   el.addEventListener('mouseleave', () => cur.classList.remove('big'));
 });
@@ -613,8 +627,8 @@ const navToggle = document.getElementById('navToggle');
 const mobMenu = document.getElementById('mobMenu');
 const mobClose = document.getElementById('mobClose');
 let menuOpen = false;
-function openMenu()  { menuOpen=true;  navToggle.classList.add('open');    mobMenu.classList.add('open');    document.body.style.overflow='hidden'; }
-function closeMenu() { menuOpen=false; navToggle.classList.remove('open'); mobMenu.classList.remove('open'); document.body.style.overflow=''; }
+function openMenu(){ menuOpen=true; navToggle.classList.add('open'); mobMenu.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenu(){ menuOpen=false; navToggle.classList.remove('open'); mobMenu.classList.remove('open'); document.body.style.overflow=''; }
 navToggle.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
 mobClose.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e => { if(e.key==='Escape' && menuOpen) closeMenu(); });
@@ -622,11 +636,20 @@ document.addEventListener('keydown', e => { if(e.key==='Escape' && menuOpen) clo
 // Reveal
 document.querySelectorAll('.reveal').forEach((el, i) => {
   new IntersectionObserver(entries => {
-    if(entries[0].isIntersecting) { setTimeout(() => el.classList.add('v'), i * 55); }
+    if(entries[0].isIntersecting) setTimeout(() => el.classList.add('v'), i * 55);
   }, {threshold:.08}).observe(el);
 });
 
 // Counters
 document.querySelectorAll('.counter').forEach(el => {
   new IntersectionObserver(entries => {
-    if(entries[0].isIntersecti
+    if(entries[0].isIntersecting){
+      const t = +el.dataset.target, step = t/90; let c = 0;
+      const tick = () => { c = Math.min(c+step,t); el.textContent = Math.floor(c); if(c<t) requestAnimationFrame(tick); };
+      tick();
+    }
+  }, {threshold:.5}).observe(el);
+});
+</script>
+</body>
+</html>
